@@ -1,0 +1,17 @@
+Human
+Elf
+Dwarf
+Orc
+Lizardman
+Mermaid
+Gaint
+Hydra
+Goblin
+Troll
+Spider
+Mimic
+Spirit
+Shade
+Hound
+Bat
+Skeleton

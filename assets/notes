@@ -1,0 +1,79 @@
+Notes
+==============
+	/*
+	 * 0 Home
+	 * 100 Village Y Z
+	 * 200 Mountain X
+	 * 300 Dungeon X Z
+	 * 400 Forest X
+	 * 500 River X
+	 * 600 Castle Y X 
+	 * 700 Road X
+	 * 800 Dream Y X
+	 */
+	 
+	 X:FSE
+	 Y:RCP
+	 Z:IM
+	 
+	 	list.add("Recognition");//Level, equipments. other status
+		list.add("Conversation");//Charisma
+		list.add("Persuasion");
+				
+		list.add("Investigation"); //Intelligence
+		list.add("Miracle");
+		
+		list.add("Fight"); //Strength
+		list.add("Stealth"); // Agility
+		list.add("Exploration");
+		
+		list.add("Accident");//Could be anything
+		
+			private void setcheker() {
+		// TODO Auto-generated method stub
+		checker = new HashMap<Character,Integer>();
+		
+		checker.put('R',level*10);
+		checker.put('C', stats.get(CharConst.CHM));
+		checker.put('P', stats.get(CharConst.CHM));
+		checker.put('I', stats.get(CharConst.INT));
+		checker.put('M', stats.get(CharConst.INT));
+		checker.put('S', stats.get(CharConst.AGI));
+		checker.put('E', stats.get(CharConst.AGI));
+
+	}
+		
+		/*
+LEVEL=5
+HEALTH=0
+STRENGTH=0
+CHARISMA=0
+AGILITY=0
+INTELLIGENCE=0
+GROWTH=0
+		
+		type.add("Kraken"); //health
+		type.add("Angel"); //high AGI
+		type.add("Dragon"); //high strength
+		type.add("Deamon"); //high Int
+		
+		type.add("Human");
+		type.add("Elf");//agi and int
+		type.add("Dwarf");//strength
+		type.add("Orc");//health
+		type.add("Lizardman");
+		type.add("Mermaid");//agi
+		type.add("Gaint");//health and strength
+		type.add("Hydra");//health and strength		
+		
+		type.add("Goblin");//agi
+		type.add("Troll");//strength
+		type.add("Spider");//agi
+		type.add("Mimic");//health
+		type.add("Spirit");//int
+		type.add("Shade");//strength
+		type.add("Hell Hound");//agi
+		type.add("Bat");//agi
+		
+		
+		*/

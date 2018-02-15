@@ -1,0 +1,17 @@
+Human=194
+Elf=18
+Dwarf=6
+Orc=20
+Lizardman=160
+Mermaid=288
+Gaint=36
+Hydra=48
+Goblin=12
+Troll=24
+Spider=156
+Mimic=72
+Spirit=272
+Shade=72
+Hound=130
+Bat=156
+Skeleton=8
