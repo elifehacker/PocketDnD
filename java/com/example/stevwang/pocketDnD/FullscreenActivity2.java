@@ -74,6 +74,9 @@ public class FullscreenActivity2 extends AppCompatActivity {
 
         setContentView(R.layout.interior);
         ImageButton toggleHome = findViewById(R.id.imageButton4);
+        mContentView = findViewById(R.id.fullscreen_content);
+        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
+
 
         toggleHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
