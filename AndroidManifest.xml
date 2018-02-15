@@ -8,17 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="World.App">
         <activity
             android:name="com.example.stevwang.pocketDnD.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.stevwang.pocketDnD.FullscreenActivity2"
@@ -26,10 +23,17 @@
             android:label="@string/title_activity_fullscreen2"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name="com.example.stevwang.pocketDnD.FullscreenActivityDefault"
+            android:name="com.example.stevwang.pocketDnD.FullscreenActivity3"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen_default"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
