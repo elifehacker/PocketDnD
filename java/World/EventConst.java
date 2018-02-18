@@ -10,47 +10,47 @@ public class EventConst {
 	public static int HOME = 0;
 	public static int GOLDCLEAR = 2; //gold will be cleared to 0 if the player fainted above this level of difficulty 
 
-	static ArrayList<Location> LOCS= MyFileReader.readFromFile3("./LocConst.txt");
+	static ArrayList<Location> LOCS= MyFileReader.readFromFile3("LocConst.txt");
 	static ArrayList<String> TYPE= getType();
 	
-	static ArrayList<String> DUNP1 = MyFileReader.readFromFile2("./locationDesc/dungeonp1.txt");
-	static ArrayList<String> DUNP2 = MyFileReader.readFromFile2("./locationDesc/dungeonp2.txt");
-	static ArrayList<String> DUNP3 = MyFileReader.readFromFile2("./locationDesc/dungeonp3.txt");
+	static ArrayList<String> DUNP1 = MyFileReader.readFromFile2("locationDesc/dungeonp1.txt");
+	static ArrayList<String> DUNP2 = MyFileReader.readFromFile2("locationDesc/dungeonp2.txt");
+	static ArrayList<String> DUNP3 = MyFileReader.readFromFile2("locationDesc/dungeonp3.txt");
 
-	static ArrayList<String> FORP1 = MyFileReader.readFromFile2("./locationDesc/Dreamp1.txt");
-	static ArrayList<String> FORP2 = MyFileReader.readFromFile2("./locationDesc/Dreamp2.txt");
-	static ArrayList<String> FORP3 = MyFileReader.readFromFile2("./locationDesc/Dreamp3.txt");
+	static ArrayList<String> FORP1 = MyFileReader.readFromFile2("locationDesc/Dreamp1.txt");
+	static ArrayList<String> FORP2 = MyFileReader.readFromFile2("locationDesc/Dreamp2.txt");
+	static ArrayList<String> FORP3 = MyFileReader.readFromFile2("locationDesc/Dreamp3.txt");
 	
-	static ArrayList<String> MNTP1 = MyFileReader.readFromFile2("./locationDesc/mountainp1.txt");
-	static ArrayList<String> MNTP2 = MyFileReader.readFromFile2("./locationDesc/mountainp2.txt");
+	static ArrayList<String> MNTP1 = MyFileReader.readFromFile2("locationDesc/mountainp1.txt");
+	static ArrayList<String> MNTP2 = MyFileReader.readFromFile2("locationDesc/mountainp2.txt");
 
-	static ArrayList<String> VILP1 = MyFileReader.readFromFile2("./locationDesc/villagep1.txt");
-	static ArrayList<String> VILP2 = MyFileReader.readFromFile2("./locationDesc/villagep2.txt");
+	static ArrayList<String> VILP1 = MyFileReader.readFromFile2("locationDesc/villagep1.txt");
+	static ArrayList<String> VILP2 = MyFileReader.readFromFile2("locationDesc/villagep2.txt");
 	
-	static ArrayList<String> CASP1 = MyFileReader.readFromFile2("./locationDesc/castlep1.txt");
-	static ArrayList<String> CASP2 = MyFileReader.readFromFile2("./locationDesc/castlep2.txt");
-	static ArrayList<String> CASP3 = MyFileReader.readFromFile2("./locationDesc/castlep3.txt");
+	static ArrayList<String> CASP1 = MyFileReader.readFromFile2("locationDesc/castlep1.txt");
+	static ArrayList<String> CASP2 = MyFileReader.readFromFile2("locationDesc/castlep2.txt");
+	static ArrayList<String> CASP3 = MyFileReader.readFromFile2("locationDesc/castlep3.txt");
 	
-	static ArrayList<String> WTRP1 = MyFileReader.readFromFile2("./locationDesc/waterp1.txt");
-	static ArrayList<String> WTRP2 = MyFileReader.readFromFile2("./locationDesc/waterp2.txt");
+	static ArrayList<String> WTRP1 = MyFileReader.readFromFile2("locationDesc/waterp1.txt");
+	static ArrayList<String> WTRP2 = MyFileReader.readFromFile2("locationDesc/waterp2.txt");
 	
-	static ArrayList<String> RDP1 = MyFileReader.readFromFile2("./locationDesc/roadp1.txt");
+	static ArrayList<String> RDP1 = MyFileReader.readFromFile2("locationDesc/roadp1.txt");
 	
-	static ArrayList<String> DRMP1 = MyFileReader.readFromFile2("./locationDesc/dreamp1.txt");
-	static ArrayList<String> DRMP2 = MyFileReader.readFromFile2("./locationDesc/dreamp2.txt");
-	static ArrayList<String> DRMP3 = MyFileReader.readFromFile2("./locationDesc/dreamp3.txt");
+	static ArrayList<String> DRMP1 = MyFileReader.readFromFile2("locationDesc/dreamp1.txt");
+	static ArrayList<String> DRMP2 = MyFileReader.readFromFile2("locationDesc/dreamp2.txt");
+	static ArrayList<String> DRMP3 = MyFileReader.readFromFile2("locationDesc/dreamp3.txt");
 
-	static ArrayList<String> ACC1 = MyFileReader.readFromFile2("./eventDesc/accidentDesc1.txt");
-	static ArrayList<String> ACC2 = MyFileReader.readFromFile2("./eventDesc/accidentDesc2.txt");
+	static ArrayList<String> ACC1 = MyFileReader.readFromFile2("eventDesc/accidentDesc1.txt");
+	static ArrayList<String> ACC2 = MyFileReader.readFromFile2("eventDesc/accidentDesc2.txt");
 
-	static ArrayList<String> Recognition = MyFileReader.readFromFile2("./eventDesc/Recognition.txt");
-	static ArrayList<String> Persuasion = MyFileReader.readFromFile2("./eventDesc/Persuasion.txt");
-	static ArrayList<String> Persuasion2 = MyFileReader.readFromFile2("./eventDesc/Persuasion2.txt");
-	static ArrayList<String> Conversation = MyFileReader.readFromFile2("./eventDesc/Conversation.txt");
-	static ArrayList<String> Investigation = MyFileReader.readFromFile2("./eventDesc/Investigation.txt");
-	static ArrayList<String> Miracle = MyFileReader.readFromFile2("./eventDesc/Miracle.txt");
-	static ArrayList<String> Stealth = MyFileReader.readFromFile2("./eventDesc/Stealth.txt");
-	static ArrayList<String> Exploration = MyFileReader.readFromFile2("./eventDesc/Exploration.txt");
+	static ArrayList<String> Recognition = MyFileReader.readFromFile2("eventDesc/Recognition.txt");
+	static ArrayList<String> Persuasion = MyFileReader.readFromFile2("eventDesc/Persuasion.txt");
+	static ArrayList<String> Persuasion2 = MyFileReader.readFromFile2("eventDesc/Persuasion2.txt");
+	static ArrayList<String> Conversation = MyFileReader.readFromFile2("eventDesc/Conversation.txt");
+	static ArrayList<String> Investigation = MyFileReader.readFromFile2("eventDesc/Investigation.txt");
+	static ArrayList<String> Miracle = MyFileReader.readFromFile2("eventDesc/Miracle.txt");
+	static ArrayList<String> Stealth = MyFileReader.readFromFile2("eventDesc/Stealth.txt");
+	static ArrayList<String> Exploration = MyFileReader.readFromFile2("eventDesc/Exploration.txt");
 	
 	public static Location getARandomPlace() {
 		int num = WorldEngine.getRandomInteger(1, LOCS.size()-1);
@@ -96,7 +96,7 @@ public class EventConst {
 	}
 	
 	public static void main(String[] args){
-		MyFileReader.readFromFile2("./LocConst.txt");
+		MyFileReader.readFromFile2("LocConst.txt");
 		MessagePrinter.print(getARandomPlace().getName());
 		MessagePrinter.print(getARandomType());
 	}

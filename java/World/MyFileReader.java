@@ -92,6 +92,6 @@ public class MyFileReader {
 	}
 	
 	public static void main(String[] args){
-	    readFromFile2("./FightDialog.txt");
+	    readFromFile2("FightDialog.txt");
 	}
 }

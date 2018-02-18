@@ -13,7 +13,7 @@ import android.widget.ImageButton;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class FullscreenActivity2 extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -30,7 +30,7 @@ public class FullscreenActivity2 extends AppCompatActivity {
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
-    private static final int UI_ANIMATION_DELAY = 300;
+    private static final int UI_ANIMATION_DELAY = 0;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
@@ -73,20 +73,32 @@ public class FullscreenActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.interior);
-        ImageButton toggleHome = findViewById(R.id.imageButton4);
         mContentView = findViewById(R.id.fullscreen_content);
-        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
+        mHideHandler.post(mHidePart2Runnable);
 
-
+        ImageButton toggleHome = findViewById(R.id.ToGarden);
         toggleHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
                 // Start NewActivity.class
-                Intent myIntent = new Intent(FullscreenActivity2.this,
-                        FullscreenActivity.class);
+                Intent myIntent = new Intent(HomeActivity.this,
+                        GardenActivity.class);
                 startActivity(myIntent);
             }
         });
+
+        ImageButton showTable = findViewById(R.id.showTable);
+        showTable.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(HomeActivity.this,
+                        TableActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.

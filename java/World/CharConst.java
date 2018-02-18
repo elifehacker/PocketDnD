@@ -16,8 +16,8 @@ public class CharConst {
 	public final static int CHM = 2;
 	public final static int INT = 3;
 	//those two are not read from file
-	public static ArrayList<String> races = MyFileReader.readFromFile2("./races.txt");
-	public static Hashtable<String, Integer> racesLoc = MyFileReader.readFromFile("./racesWithLoc.txt");
+	public static ArrayList<String> races = MyFileReader.readFromFile2("races.txt");
+	public static Hashtable<String, Integer> racesLoc = MyFileReader.readFromFile("racesWithLoc.txt");
 
 	public static double bonusmultiplier = 1.1;
 	public static double criticalmultiplier = 1.5;
@@ -25,8 +25,8 @@ public class CharConst {
 
 	public static int difficultyLevelScaling = 3;
 	
-	Hashtable<String, Integer> CHARCONST= MyFileReader.readFromFile("./CharConst.txt");
-	
+	Hashtable<String, Integer> CHARCONST= MyFileReader.readFromFile("CharConst.txt");
+
 	private static ArrayList<String> newlist() {
 		// TODO Auto-generated method stub
 		ArrayList<String> type = new ArrayList<String>();

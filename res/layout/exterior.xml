@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
-    tools:context="com.example.stevwang.pocketDnD.FullscreenActivity">
+    tools:context="com.example.stevwang.pocketDnD.GardenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -45,11 +45,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/imageButton4"
+            android:layout_alignTop="@+id/toHome"
             app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/toHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -61,7 +61,7 @@
             android:id="@+id/imageButton6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/imageButton4"
+            android:layout_above="@+id/toHome"
             android:layout_alignParentEnd="true"
             app:srcCompat="@android:drawable/btn_star_big_on" />
     </RelativeLayout>

@@ -12,7 +12,7 @@ import android.widget.ImageButton;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class FullscreenActivity extends AppCompatActivity {
+public class GardenActivity extends AppCompatActivity {
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -60,17 +60,16 @@ public class FullscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.exterior);
-        ImageButton toggleHome = findViewById(R.id.imageButton4);
         mContentView = findViewById(R.id.fullscreen_content);
-
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
 
+        ImageButton toggleHome = findViewById(R.id.toHome);
         toggleHome.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
                 // Start NewActivity.class
-                Intent myIntent = new Intent(FullscreenActivity.this,
-                        FullscreenActivity2.class);
+                Intent myIntent = new Intent(GardenActivity.this,
+                        HomeActivity.class);
                 startActivity(myIntent);
             }
         });
