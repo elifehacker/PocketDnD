@@ -32,6 +32,12 @@
             android:label="@string/title_activity_fullscreen_default"
             android:theme="@style/FullscreenTheme">
         </activity>
+
+        <activity
+            android:name=".CheckCharacter"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/check_character"
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".TableActivity"
             android:theme="@style/Theme.AppCompat.Dialog"></activity>

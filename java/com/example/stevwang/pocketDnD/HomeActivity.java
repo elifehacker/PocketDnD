@@ -54,6 +54,17 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+        ImageButton checkCh = findViewById(R.id.checkCharacter);
+        checkCh.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(HomeActivity.this,
+                        CheckCharacter.class);
+                startActivity(myIntent);
+            }
+        });
+
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.

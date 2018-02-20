@@ -1,11 +1,14 @@
 package com.example.stevwang.pocketDnD;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,28 +35,17 @@ public class CheckCharacter extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         mContentView.setSystemUiVisibility(uioptions);
 
-        TextView tv = findViewById(R.id.textView3);
-        ArrayList<String> charconst  = new ArrayList<String>();
-        StringBuffer sb = new StringBuffer();
-        String line = null;
-        /*
-        try {
-            InputStream is = getAssets().open("notes");
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-            while((line = br.readLine()) != null) {
-                //MessagePrinter.print(line);
-                //charconst.add(line);
-                sb.append(line);
+        Button backButton = findViewById(R.id.back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(CheckCharacter.this,
+                        HomeActivity.class);
+                startActivity(myIntent);
             }
-            // Always close files.
-            br.close();
+        });
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if(tv!=null)tv.setText(DialogConst.getAFightDialog());
-        */
 
     }
 

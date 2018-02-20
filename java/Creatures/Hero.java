@@ -2,8 +2,8 @@ package Creatures;
 
 import java.util.ArrayList;
 
-import Objects.Equipment;
-import Objects.Item;
+import Objects.Items.Equipment;
+import Objects.Items.Item;
 import World.CharConst;
 import World.MessagePrinter;
 
