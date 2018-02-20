@@ -1,4 +1,4 @@
-package Objects;
+package Objects.Items;
 
 public class Equipment extends Item{
 	public Equipment(int identifier, String desc) {

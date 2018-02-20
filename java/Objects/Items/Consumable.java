@@ -1,4 +1,4 @@
-package Objects;
+package Objects.Items;
 
 public class Consumable extends Item{
     public Consumable(int identifier, String desc) {

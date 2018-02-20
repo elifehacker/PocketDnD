@@ -1,4 +1,4 @@
-package Objects;
+package Objects.Items;
 
 public class Souvenir extends Item{
 
