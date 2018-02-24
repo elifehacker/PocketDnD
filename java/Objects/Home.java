@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Creatures.Creature;
 import Creatures.Hero;
+import World.MessagePrinter;
 
 public class Home {
 
@@ -31,7 +32,7 @@ public class Home {
 	private void setReputation() {
 		// TODO Auto-generated method stub
 		reputation = player.getRank()*10+player.getLevel();
-		System.out.println("New Reputation is "+reputation);
+		MessagePrinter.print("New Reputation is "+reputation);
 	}
 
 	public synchronized void train(int index) {
@@ -57,12 +58,12 @@ public class Home {
 	}
 	
 	public void printAll() {
-		System.out.println("**** Home **** ");
+		MessagePrinter.print("**** Home **** ");
 		player.printAll();
-		System.out.println("Gold "+this.gold);
-		System.out.println("Reputation "+this.reputation);
-		System.out.println("Total training "+this.train_c);
-		System.out.println("Successful Adventure "+this.adv_suc+"/"+(this.adv_fail+this.adv_suc));
+		MessagePrinter.print("Gold "+this.gold);
+		MessagePrinter.print("Reputation "+this.reputation);
+		MessagePrinter.print("Total training "+this.train_c);
+		MessagePrinter.print("Successful Adventure "+this.adv_suc+"/"+(this.adv_fail+this.adv_suc));
 
 	}
 	
@@ -76,7 +77,7 @@ public class Home {
 				if (diff<=0) diff =1;
 				
 				Adventure adv = new Adventure(player, diff, 3);
-				System.out.println("**** Adventure rank "+diff+" starts **** ");
+				MessagePrinter.print("**** Adventure rank "+diff+" starts **** ");
 				this.gold+=100;
 				
 				if(adv.start()) {
@@ -87,7 +88,7 @@ public class Home {
 				}
 				
 				this.gold += player.getGold();
-				System.out.println("Gold collected "+player.getGold());
+				MessagePrinter.print("Gold collected "+player.getGold());
 				
 				player.setGold(0);
 				setReputation();
@@ -129,7 +130,7 @@ public class Home {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        System.out.println("**** Home **** ");
+        MessagePrinter.print("**** Home **** ");
 
 		while(Home.getHome().getReputation()<30) {
 			int num = World.WorldEngine.getRandomInteger(0, 6);

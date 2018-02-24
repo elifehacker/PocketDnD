@@ -17,9 +17,9 @@ public class EventConst {
 	static ArrayList<String> DUNP2 = MyFileReader.readFromFile2("locationDesc/dungeonp2.txt");
 	static ArrayList<String> DUNP3 = MyFileReader.readFromFile2("locationDesc/dungeonp3.txt");
 
-	static ArrayList<String> FORP1 = MyFileReader.readFromFile2("locationDesc/Dreamp1.txt");
-	static ArrayList<String> FORP2 = MyFileReader.readFromFile2("locationDesc/Dreamp2.txt");
-	static ArrayList<String> FORP3 = MyFileReader.readFromFile2("locationDesc/Dreamp3.txt");
+	static ArrayList<String> FORP1 = MyFileReader.readFromFile2("locationDesc/forestp1.txt");
+	static ArrayList<String> FORP2 = MyFileReader.readFromFile2("locationDesc/forestp2.txt");
+	static ArrayList<String> FORP3 = MyFileReader.readFromFile2("locationDesc/forestp3.txt");
 	
 	static ArrayList<String> MNTP1 = MyFileReader.readFromFile2("locationDesc/mountainp1.txt");
 	static ArrayList<String> MNTP2 = MyFileReader.readFromFile2("locationDesc/mountainp2.txt");
