@@ -30,22 +30,23 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="23dp"
             android:layout_marginTop="19dp"
+            android:src="@drawable/character_home_animation"
             app:srcCompat="@drawable/character" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageView2"
+            android:layout_alignTop="@+id/character"
             android:layout_marginStart="45dp"
-            android:layout_toEndOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/character"
             android:text="Stats" />
 
         <Button
@@ -62,7 +63,7 @@
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageView2"
+            android:layout_alignBottom="@+id/character"
             android:layout_alignEnd="@+id/button"
             android:text="Item" />
 
@@ -79,8 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/button4"
-            android:layout_alignStart="@+id/imageView2"
-            android:layout_below="@+id/imageView2"
+            android:layout_alignStart="@+id/character"
+            android:layout_below="@+id/character"
             android:layout_marginTop="12dp">
 
             <LinearLayout
@@ -100,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignEnd="@+id/horizontalScrollView2"
-            android:layout_alignStart="@+id/imageView2"
+            android:layout_alignStart="@+id/character"
             android:layout_below="@+id/horizontalScrollView2"
             android:layout_marginTop="13dp">
 

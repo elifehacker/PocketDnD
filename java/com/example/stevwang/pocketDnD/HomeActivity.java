@@ -2,12 +2,14 @@ package com.example.stevwang.pocketDnD;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -65,9 +67,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
+
+        ImageView character = (ImageView)findViewById(R.id.character);
+        if (character != null) {
+            character.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)character.getDrawable();
+            frameAnimation.setVisible(true, true);
+            frameAnimation.start();
+        }
+        //character.setX(200);
+        //character.setY(600);
+
+
     }
 
 }

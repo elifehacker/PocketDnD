@@ -1,0 +1,10 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chome_animation"
+    android:oneshot="false">
+    <item android:drawable="@drawable/chome0" android:duration="150" />
+    <item android:drawable="@drawable/chome1" android:duration="150" />
+    <item android:drawable="@drawable/chome2" android:duration="150" />
+    <item android:drawable="@drawable/chome3" android:duration="150" />
+    <item android:drawable="@drawable/chome4" android:duration="150" />
+    <item android:drawable="@drawable/chome5" android:duration="150" />
+</animation-list>
