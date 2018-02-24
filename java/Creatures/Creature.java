@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import Objects.Items.Consumable;
+import Objects.Items.Equipment;
+import Objects.Items.Souvenir;
 import World.CharConst;
 import World.MessagePrinter;
 import World.WorldEngine;
@@ -22,7 +25,10 @@ public class Creature {
 	private HashMap<Character,Integer> checker = null;
 	final int rollDelimiter = 50;
 
-	
+	protected ArrayList<Consumable> consumbales ;
+	protected ArrayList<Equipment> equipments ;
+	protected ArrayList<Souvenir> souvenirs ;
+
 	public Creature() {
 		randomnCh();
 		setcheker();

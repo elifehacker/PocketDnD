@@ -1,8 +1,12 @@
 package Objects.Items;
 
 public class Equipment extends Item{
-	public Equipment(int identifier, String desc) {
+
+	int type;
+
+	public Equipment(int identifier, String desc, int t) {
 		super(identifier, desc);
+		type = t;
 	}
 
 	public void equip(){

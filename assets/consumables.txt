@@ -1,0 +1,13 @@
+10000=Cookie=Plain cookie made of dough, sugar and butter in the oven.=Rec@50
+11000=Toffee Crunch Cookie= Sinfully sweet toffee meets ultra-rich dark chocolate to create a truly addictive concoction.=Rec@100
+12000=Chocolate Chip Cookie= A classic sensation. How could you say no when offered one?=Rec@200
+13000=Oatmeal Raisin Cookie=Chewy select Kalifornia raisins coupled with crunchy pecans in a soft homemade-style cookie conjures up childhood memories of baking with your grandma.=Rec@10%
+14000=Peanut Butter Cookie=Double-chocolate dough collides with mounds of smooth, natural peanut butter. Don’t forget the tall glass of cold milk.=Rec@20%
+15000=Snickerdoodle Cookie=Sweet hints of cinnamon melt in your mouth like warm, homemade apple pie…=Rec@40%
+16000=Brownie Cookie=Made with sweet ground chocolate, you won’t question why we named this the Brownie Cookie.=Max@HTHh@5%
+20000=Hearty Fruit and Oat Smoothie=You'll fill up fast with this strawberry-and-banana-based smoothie that adds oats for extra heartiness.=Max@STR@5%
+21000=Mango and Yogurt Smoothie=Stop chopping! Save precious time in the A.M. with this speedy smoothie recipe that utilizes chunks of frozen mango.=Max@INT@5%
+22000=Green Ginger-Peach Smoothie=Baby spinach gives this smoothie a nutritional boost, as well as its signature green hue.=Max@CHM@5%
+23000=Tropical Blueberry Smoothie=Fresh orange and chopped pineapple add a citrusy, tropical twist to this blueberry-based smoothie.=Max@AGI@5%
+24000=Yogurt-Pistachio Smoothies=Skip the fruitier fare with this cool yogurt-based smoothie that picks up its flavor from pistachios and fresh ginger.=Max@GROWTH@10%
+25000=Winter Smoothie=Filled with fruit juices and banana, this smoothie is healthy enough to serve for breakfast, but decadent enough to serve for dessert.=Max@LVL@1
