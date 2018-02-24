@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+
+import Objects.Home;
+import World.MessagePrinter;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -41,6 +45,7 @@ public class GardenActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.

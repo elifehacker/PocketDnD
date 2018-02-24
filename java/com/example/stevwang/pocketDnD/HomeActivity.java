@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import Objects.Home;
+import World.MessagePrinter;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -78,6 +81,20 @@ public class HomeActivity extends AppCompatActivity {
         //character.setX(200);
         //character.setY(600);
 
+        Thread thread = new Thread(){
+
+            public void run(){
+                MessagePrinter.print("A young hero, hoping to achieve great wonders.");
+                MessagePrinter.print("Would you witness and guide him through his journey?");
+                MessagePrinter.print("**** Home **** ");
+                while(Home.getHome().getReputation()<30) {
+                    int num = World.WorldEngine.getRandomInteger(0, 6);
+                    if(num<4) Home.getHome().train(num);
+                    if(num >= 4) Home.getHome().goAdventure();
+                }
+            }
+        };
+        thread.start();
 
     }
 

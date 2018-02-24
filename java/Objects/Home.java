@@ -131,7 +131,7 @@ public class Home {
 		}
         System.out.println("**** Home **** ");
 
-		while(Home.getHome().getReputation()<40) {
+		while(Home.getHome().getReputation()<30) {
 			int num = World.WorldEngine.getRandomInteger(0, 6);
 			if(num<4) Home.getHome().train(num);
 			if(num >= 4) Home.getHome().goAdventure();

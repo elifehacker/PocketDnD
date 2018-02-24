@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import World.MessagePrinter;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -56,6 +58,19 @@ public class CheckCharacter extends AppCompatActivity {
             frameAnimation.start();
         }
 
+        Thread thread = new Thread(){
+            public void run(){
+                TextView herolog = (TextView) findViewById(R.id.herolog);
+                StringBuffer sb = new StringBuffer();
+                for(String str : MessagePrinter.messages){
+                    sb.append(str);
+                    sb.append("\n");
+
+                }
+                herolog.setText(sb.toString());
+            }
+        };
+        thread.start();
 
     }
 
