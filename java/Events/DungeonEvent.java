@@ -13,7 +13,7 @@ public class DungeonEvent extends Event{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean start(Hero player) {
+	public int start(Hero player) {
 		MessagePrinter.print(EventConst.getARandomDungeonDesc(super.id%3));		
 		return super.start(player);
 	}

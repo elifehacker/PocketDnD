@@ -115,12 +115,13 @@ public class Adventure {
 				if(ev==null) ev = new Event(sb.toString(), loc, new Creature(), difficulty, i*numofEventperLoc+k);
 
 				MessagePrinter.print("=== At "+ev.getLocation().getName()+" ===");
-				if(!ev.start(player)) {
+				int result = ev.start(player);
+				if(result==-1) {
 					player.setGold(player.getGold()/2);
 					MessagePrinter.print(player.getName()+" has no health and fainted. Gold collected halved.");
 					return false;
 				}else {
-					succeeded++;
+					if(result==1) succeeded++;
 					if(k+1==numofEventperLoc) {
 						if(!getReward(k, succeeded)) return false;
 					}

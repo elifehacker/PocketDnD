@@ -86,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
             public void run(){
                 MessagePrinter.print("A young hero, hoping to achieve great wonders.");
                 MessagePrinter.print("Would you witness and guide him through his journey?");
-                MessagePrinter.print("**** Home **** ");
+                Home.getHome().printAll();
                 while(Home.getHome().getReputation()<30) {
                     int num = World.WorldEngine.getRandomInteger(0, 6);
                     if(num<4) Home.getHome().train(num);

@@ -67,10 +67,10 @@ public class Home {
 	public void printAll() {
 		MessagePrinter.print("**** Home **** ");
 		player.printAll();
-		MessagePrinter.print("Gold "+this.gold);
-		MessagePrinter.print("Reputation "+this.reputation);
-		MessagePrinter.print("Total training "+this.train_c);
-		MessagePrinter.print("Successful Adventure "+this.adv_suc+"/"+(this.adv_fail+this.adv_suc));
+		MessagePrinter.print("Household Gold: "+this.gold);
+		MessagePrinter.print("Reputation: "+this.reputation);
+		MessagePrinter.print("Total training: "+this.train_c);
+		MessagePrinter.print("Successful Adventure: "+this.adv_suc+"/"+(this.adv_fail+this.adv_suc));
 
 	}
 	

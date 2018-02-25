@@ -14,7 +14,7 @@ public class CastleEvent extends Event{
 
 	}
 	
-	public boolean start(Hero player) {
+	public int start(Hero player) {
 		MessagePrinter.print(EventConst.getARandomCastleDesc(super.id%3));		
 		return super.start(player);
 	}

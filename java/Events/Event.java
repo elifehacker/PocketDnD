@@ -28,7 +28,7 @@ public class Event {
 	}
 	
 
-	public boolean start(Hero player) {
+	public int start(Hero player) {
 		
 		Random r = new Random();
 		char type = eventtype.charAt(r.nextInt(eventtype.length()));
@@ -37,9 +37,9 @@ public class Event {
 			if (NPC==null) NPC=new Creature(difficulty, location.getId());
 			if(World.WorldEngine.fight(player, NPC)) {
 				getExpAndGold(player,2);
-				return true;
+				return 1;
 			}
-			return false;
+			return -1;
 		}else if(type=='A') {
 			return handleAccident(player);
 		}
@@ -52,7 +52,7 @@ public class Event {
 			//reward
 			if(list!=null) MessagePrinter.print("Succeeded! "+list.get(1));
 			getExpAndGold(player,1);
-
+			return 1;
 		}else {
 			//penalty
 			if(list!=null) MessagePrinter.print("Failed! "+list.get(2));
@@ -60,7 +60,7 @@ public class Event {
 			player.incDamage(dmg);
 			MessagePrinter.print("Health reduced by "+dmg+" to "+player.getCurrentHealth());
 			if(player.getCurrentHealth()<=0)
-				return false;
+				return -1;
 		}
 		
 		try {
@@ -69,10 +69,10 @@ public class Event {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return true;
+		return 0;
 
 	}
-	private boolean handleAccident(Hero player) {
+	private int handleAccident(Hero player) {
 		// TODO Auto-generated method stub
 		acc++;
 		MessagePrinter.print("A surprise event was triggered.");
@@ -81,17 +81,17 @@ public class Event {
 		if(acc%2==1) {
 			if(World.WorldEngine.fight(player, player)) {
 				getExpAndGold(player,3);
-				return true;
+				return 1;
 			}
 		}else if(acc%2==0){
 			Creature dragon = new Creature();
 			dragon.makeADragon(difficulty*World.CharConst.difficultyLevelScaling);
 			if(World.WorldEngine.fight(player, dragon)) {
 				getExpAndGold(player,5);
-				return true;
+				return 1;
 			}
 		}
-		return false;
+		return -1;
 		
 	}
 

@@ -12,7 +12,7 @@ public class DreamEvent extends Event{
 		super(type, loc, ch, diff, count);
 		// TODO Auto-generated constructor stub
 	}
-	public boolean start(Hero player) {
+	public int start(Hero player) {
 		MessagePrinter.print(EventConst.getARandomDreamDesc(super.id%3));		
 		return super.start(player);
 	}
