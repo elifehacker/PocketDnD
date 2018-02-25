@@ -189,7 +189,13 @@ public class Creature {
 		growth*=1.5;
 		levelup(lv);
 	}
-
+	public void makeAMimic(int lv) {
+		types.clear();
+		weakness.clear();
+		types.add("Mimic");
+		growth*=1.2;
+		levelup(lv);
+	}
 	public void printAll() {
         StringBuilder sb = new StringBuilder();
         sb.append("name "+this.name+'\n');

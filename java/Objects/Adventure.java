@@ -12,8 +12,14 @@ import Events.MountainEvent;
 import Events.RoadEvent;
 import Events.VillageEvent;
 import Events.WaterEvent;
+import Objects.Items.Consumable;
+import Objects.Items.Equipment;
 import World.EventConst;
+import World.ItemConst;
 import World.MessagePrinter;
+import World.WorldEngine;
+
+import static World.WorldEngine.getRandomInteger;
 
 public class Adventure {
 
@@ -41,10 +47,10 @@ public class Adventure {
 
 	public boolean start() {
 		//go to difficulty number of location, each location has 3 events
-
 		for(int i = 0; i < this.duration; i++) {
 			Location loc = EventConst.getARandomPlace();
-			int locid = loc.getId(); 
+			int locid = loc.getId();
+			int succeeded = 0;
 
 			for(int k = 0; k< numofEventperLoc; k++) {
 
@@ -67,7 +73,7 @@ public class Adventure {
 				Event ev = null;
 				
 				//1/3 *1/3 *1/3 of the time an accident could happen
-				if(k+1==numofEventperLoc && World.WorldEngine.getRandomInteger(0, 10) < 3) sb.append("A");
+				if(k+1==numofEventperLoc && getRandomInteger(0, 10) < 3) sb.append("A");
 				//sb.append("A");
 				
 				Creature c = null;
@@ -106,26 +112,64 @@ public class Adventure {
 
 				}
 				
-				if(ev==null) ev = new Event(sb.toString(), loc, new Creature(), difficulty, i*numofEventperLoc+k);					
-				this.events.add(ev);
-				
-			}
-		}
-		
-		for(Event ev : events) {
-			MessagePrinter.print("=== At "+ev.getLocation().getName()+" ===");
+				if(ev==null) ev = new Event(sb.toString(), loc, new Creature(), difficulty, i*numofEventperLoc+k);
 
-			if(!ev.start(player)) {
-				player.setGold(player.getGold()/2); 
-				MessagePrinter.print(player.getName()+" has no health and fainted. Gold collected halved.");
-				return false;
+				MessagePrinter.print("=== At "+ev.getLocation().getName()+" ===");
+				if(!ev.start(player)) {
+					player.setGold(player.getGold()/2);
+					MessagePrinter.print(player.getName()+" has no health and fainted. Gold collected halved.");
+					return false;
+				}else {
+					succeeded++;
+					if(k+1==numofEventperLoc) {
+						if(!getReward(k, succeeded)) return false;
+					}
+				}
 			}
 		}
 		
 		MessagePrinter.print("**** Adventure completed! ****");
 		return true;
 	}
-	
+
+	private boolean getReward(int k, int suc){
+		//rewards
+		MessagePrinter.print("**** Quest completed with "+suc+"/"+numofEventperLoc+" success. Getting Rewards! ****");
+		int rnd = getRandomInteger(0,70);
+		rnd+= suc*20;
+		if(0<rnd && rnd<=15){
+			//fight a mimic
+			Creature mimic = new Creature();
+			mimic.makeAMimic(player.getLevel());
+			return WorldEngine.fight(player, mimic);
+		}else if(15<rnd && rnd<=40){
+			//1 consumable
+			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+		}else if(40<rnd && rnd<=65){
+			//3 consumables
+			for(int i = 0; i <3; i++){
+				player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+			}
+		}else if(65<rnd && rnd<=90){
+			//1 equipment
+			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
+
+		}else if(90<rnd&& rnd<=120){
+			//1 equipment and 2 consumables
+			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
+			for(int i = 0; i <2; i++){
+				player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+			}
+		}else if(120<rnd) {
+			//2 equipments and 1 consumable
+			for (int i = 0; i < 2; i++) {
+				player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(), "equipments"));
+			}
+			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+		}
+		return true;
+	}
+
 	public Hero getHero() {
 		return player;
 	}

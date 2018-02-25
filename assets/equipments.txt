@@ -1,18 +1,17 @@
-50000=Leather Armor=Consists of a combination of cloth and soft leather to provide a stronger barrier against penetration, while being flexible enough to allow a good range of movement=E@DEF@10%
-51000=Steel Armor=A sturdy type of personal body armour made from iron or steel plates, culminating in the iconic suit of armour entirely encasing the wearer.=E@DEF@15%
-52000=Dwarven Armor=Armor of the Knights of Beranike of Maria, known for their heavy armaments and armor.=E@DEF@20%
-53000=Ebony Armor=The armor is made out of Ebony Ingots. It has a polished, sleek dark surface.=E@DEF@25%
-54000=Dragon Armor=By the god, a legendary armor made of the scale and bone of what used to be a living dragon!=E@DEF@30%
-60000=Iron Sword=A common sword made of Iron.=E@STR@10%
-61000=Steel Sword=A shining sword made of steel.=E@STR@15%
-62000=Valyrian Sword=Forged in the days of the mighty Valyrian Freehold. The steel can hold an especially keen edge, remaining sharp forever without the need for honing.=E@STR@20%
-63000=Sword of Hephaestus=It capture a fraction of the spirit of the god of fire, its destructive nature and fierce power.=E@STR@25%
-70000=Iron Spear=A common spear made of Iron.=E@STR@10%
-71000=Steel Spear=A shining spear made of steel.=E@STR@15%
-72000=Dragonglass Spear=A spear forged by the metal melted by the breathing fire of a dragon. It captures the remnant of heat of the magical creature.=E@STR@20%
-73000=Spear of lighting=A weapon passed down to those bound by the Warrior of Sunlight covenant. Lightning spears inflicts lightning damage, and are very effective against magic, fire, and most of all, dragons.=E@STR@25%
-80000=Oakwood Staff=A common staff made of oakwood.=E@INT@20%
-81000=Silver Maple Staff=A handy staff made of the wood of a silver maple tree.=E@INT@25%
-82000=Purple Heart Staff=A handy staff made of the wood of a purple heart tree.=E@INT@30%
-83000=Staff of the White=A staff which once belong to a white wizard who claimed leadership of the order of Wizards of the middle earth.=E@INT@35%
-
+51000=Leather Armor=Consists of a combination of cloth and soft leather to provide a stronger barrier against penetration, while being flexible enough to allow a good range of movement=E@DEF@10%
+52000=Steel Armor=A sturdy type of personal body armour made from iron or steel plates, culminating in the iconic suit of armour entirely encasing the wearer.=E@DEF@15%
+53000=Dwarven Armor=Armor of the Knights of Beranike of Maria, known for their heavy armaments and armor.=E@DEF@20%
+54000=Ebony Armor=The armor is made out of Ebony Ingots. It has a polished, sleek dark surface.=E@DEF@25%
+55000=Dragon Armor=By the god, a legendary armor made of scales and bones of what used to be a living dragon!=E@DEF@30%
+61000=Iron Sword=A common sword made of Iron.=E@STR@10%
+62000=Steel Sword=A shining sword made of steel.=E@STR@15%
+63000=Valyrian Sword=Forged in the days of the mighty Valyrian Freehold. The steel can hold an especially keen edge, remaining sharp forever without the need for honing.=E@STR@20%
+64000=Sword of Hephaestus=It capture a fraction of the spirit of the god of fire, its destructive nature and fierce power.=E@STR@25%
+71000=Iron Spear=A common spear made of Iron.=E@STR@10%
+72000=Steel Spear=A shining spear made of steel.=E@STR@15%
+73000=Dragonglass Spear=A spear forged by the metal melted by the breathing fire of a dragon. It captures the remnant of heat of the magical creature.=E@STR@20%
+74000=Spear of lighting=A weapon passed down to those bound by the Warrior of Sunlight covenant. Lightning spears inflicts lightning damage, and are very effective against magic, fire, and most of all, dragons.=E@STR@25%
+81000=Oakwood Staff=A common staff made of oakwood.=E@INT@20%
+82000=Silver Maple Staff=A handy staff made of the wood of a silver maple tree.=E@INT@25%
+83000=Purple Heart Staff=A handy staff made of the wood of a purple heart tree.=E@INT@30%
+84000=Staff of the White=A staff which once belong to a white wizard who claimed leadership of the order of Wizards of the middle earth.=E@INT@35%

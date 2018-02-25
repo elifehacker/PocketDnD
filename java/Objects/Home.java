@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import Creatures.Creature;
 import Creatures.Hero;
+import Objects.Items.Consumable;
+import Objects.Items.Equipment;
+import Objects.Items.Souvenir;
 import World.MessagePrinter;
 
 public class Home {
@@ -19,7 +22,11 @@ public class Home {
 	private int train_c =0;
 	private int adv_suc = 0;
 	private int adv_fail = 0;
-	
+
+	private ArrayList<Consumable> consumables;
+	private ArrayList<Equipment> equipments;
+	private ArrayList<Souvenir> souvenirs;
+
 	private Home() {
 		residents = new ArrayList<Creature>();
 		Hero h = new Hero();

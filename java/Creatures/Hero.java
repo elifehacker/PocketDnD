@@ -12,7 +12,7 @@ public class Hero extends Creature{
 
 	private int gold = 0;
 	private int exp = 0;
-	private ArrayList<Consumable> items;
+	private ArrayList<Consumable> consumables;
 	private ArrayList<Equipment> equipments;
 	private int nextlevel =(int) (Math.pow(super.getLevel(),CharConst.lvcurve)*100);;
 	private int rank = 1;
@@ -22,8 +22,8 @@ public class Hero extends Creature{
 		super.types.clear();
 		super.weakness.clear();
 		super.types.add("Human Hero");
-		items = new ArrayList<Consumable>();
-		equipments = new ArrayList<Equipment>();
+		this.consumables = new ArrayList<Consumable>();
+		this.equipments = new ArrayList<Equipment>();
 
 	}
 
@@ -54,15 +54,25 @@ public class Hero extends Creature{
 	}
 
 	public ArrayList<Consumable> getItems() {
-		return items;
+		return consumables;
 	}
 
 	public void addItems(ArrayList<Consumable> items) {
-		this.items.addAll(items);
+		this.consumables.addAll(items);
+	}
+
+	public void addItem(Consumable item) {
+		MessagePrinter.print("Got new item! "+item.getName()+"!");
+		this.consumables.add(item);
 	}
 
 	public ArrayList<Equipment> getEquipments() {
 		return equipments;
+	}
+
+	public void addEquipment(Equipment item) {
+		MessagePrinter.print("Got new equipment! "+item.getName()+"!");
+		this.equipments.add(item);
 	}
 
 	public void setEquipments(ArrayList<Equipment> equipments) {

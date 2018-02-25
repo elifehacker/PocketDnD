@@ -1,8 +1,13 @@
 package Objects.Items;
 
 public class Consumable extends Item{
-    public Consumable(int identifier, String desc) {
-        super(identifier, desc);
+
+    String effect;
+
+    public Consumable(int identifier, String name, String desc, String ef) {
+
+        super(identifier, name, desc);
+        this.effect = ef;
     }
 
     public void use(){

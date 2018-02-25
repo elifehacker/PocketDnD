@@ -15,7 +15,7 @@ public class CharConst {
 	public final static int AGI = 1;
 	public final static int CHM = 2;
 	public final static int INT = 3;
-	//those two are not read from file
+
 	public static ArrayList<String> races = MyFileReader.readFromFile2("races.txt");
 	public static Hashtable<String, Integer> racesLoc = MyFileReader.readFromFile("racesWithLoc.txt");
 
