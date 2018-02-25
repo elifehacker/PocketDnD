@@ -45,7 +45,7 @@ public class Event {
 		}
 		
 		ArrayList<String> list = EventConst.getEventDesc(type);
-		//if(list!=null) MessagePrinter.print(list.get(0));
+		if(list!=null) MessagePrinter.print(list.get(0));
 
 		if(player.check(type, difficulty)) {
 			//reward
