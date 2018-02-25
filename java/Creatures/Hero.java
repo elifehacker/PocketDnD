@@ -62,7 +62,7 @@ public class Hero extends Creature{
 	}
 
 	public void addItem(Consumable item) {
-		MessagePrinter.print("Got new item! "+item.getName()+"!");
+		MessagePrinter.print("Got a new item! "+item.getName()+"!");
 		this.consumables.add(item);
 	}
 
@@ -71,7 +71,7 @@ public class Hero extends Creature{
 	}
 
 	public void addEquipment(Equipment item) {
-		MessagePrinter.print("Got new equipment! "+item.getName()+"!");
+		MessagePrinter.print("Got a new equipment! "+item.getName()+"!");
 		this.equipments.add(item);
 	}
 
