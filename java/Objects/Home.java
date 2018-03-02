@@ -115,6 +115,11 @@ public class Home {
 	public int getReputation() {
 		return reputation;
 	}
+
+	public Hero getPlayer(){
+		return this.player;
+	}
+
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

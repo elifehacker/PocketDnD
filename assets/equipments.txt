@@ -1,8 +1,18 @@
+41000=Common Boots=A pair of sturdy boots worn by almost everyone. Made of Leather.=E@AGI@10%
+42000=Adventure Boots=The boots are tailored specifically for adventures for their needs.=E@AGI@15%
+43000=Warrior Boots=The boots are issued by kingdoms military council. It is made of high quality black leather.=E@AGI@20%
+44000=High Templar Boots=Those used to belong to members of the king's guard.=E@AGI@25%
+45000=Frost Boots=A pair of magical boots blessed by Skadi, the goddess of winter.=E@AGI@30%
 51000=Leather Armor=Consists of a combination of cloth and soft leather to provide a stronger barrier against penetration, while being flexible enough to allow a good range of movement=E@DEF@10%
 52000=Steel Armor=A sturdy type of personal body armour made from iron or steel plates, culminating in the iconic suit of armour entirely encasing the wearer.=E@DEF@15%
 53000=Dwarven Armor=Armor of the Knights of Beranike of Maria, known for their heavy armaments and armor.=E@DEF@20%
 54000=Ebony Armor=The armor is made out of Ebony Ingots. It has a polished, sleek dark surface.=E@DEF@25%
-55000=Dragon Armor=By the god, a legendary armor made of scales and bones of what used to be a living dragon!=E@DEF@30%
+55000=Dragon Armor=By the god, a legendary armor made of scales, bones and teeth of what used to be a living dragon!=E@DEF@30%
+50100=Adventure Suit=A suit for adventure. It has many porches on the belt.=E@CHM@10%
+51100=Jacket=A wind proof jacket=E@CHM@15%
+52100=Scholars Robe=A robe made of clean smooth silk.=E@CHM@20%
+53100=Master Robe=A handsome slim robe made of the finest fabric across the continent=E@CHM@25%
+54100=Lords Cloth=An attire only worn by the members of the high council. It is a symbol of power and stature.=E@CHM@30%
 61000=Iron Sword=A common sword made of Iron.=E@STR@10%
 62000=Steel Sword=A shining sword made of steel.=E@STR@15%
 63000=Valyrian Sword=Forged in the days of the mighty Valyrian Freehold. The steel can hold an especially keen edge, remaining sharp forever without the need for honing.=E@STR@20%
@@ -10,8 +20,8 @@
 71000=Iron Spear=A common spear made of Iron.=E@STR@10%
 72000=Steel Spear=A shining spear made of steel.=E@STR@15%
 73000=Dragonglass Spear=A spear forged by the metal melted by the breathing fire of a dragon. It captures the remnant of heat of the magical creature.=E@STR@20%
-74000=Spear of lighting=A weapon passed down to those bound by the Warrior of Sunlight covenant. Lightning spears inflicts lightning damage, and are very effective against magic, fire, and most of all, dragons.=E@STR@25%
+74000=Spear of lighting=A weapon passed down to those bound by the Warrior of Sunlight covenant. Lightning spears inflicts lightning damage, and are very effective against, most of all, dragons.=E@STR@25%
 81000=Oakwood Staff=A common staff made of oakwood.=E@INT@20%
 82000=Silver Maple Staff=A handy staff made of the wood of a silver maple tree.=E@INT@25%
-83000=Purple Heart Staff=A handy staff made of the wood of a purple heart tree.=E@INT@30%
-84000=Staff of the White=A staff which once belong to a white wizard who claimed leadership of the order of Wizards of the middle earth.=E@INT@35%
+83000=Green Heart Staff=A staff infused with the spirit of the Old Pine forrest.=E@INT@30%
+84000=Holy Staff of the White=A staff which once belong to a white wizard from a land far away.=E@INT@35%

@@ -11,10 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import Objects.Home;
+import Objects.Items.Item;
 import World.MessagePrinter;
 
 /**
@@ -39,6 +42,9 @@ public class CheckCharacter extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         mContentView.setSystemUiVisibility(uioptions);
 
+
+        final LinearLayout backpack = (LinearLayout) findViewById(R.id.backpack);
+
         Button backButton = findViewById(R.id.back);
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
@@ -47,6 +53,18 @@ public class CheckCharacter extends AppCompatActivity {
                 Intent myIntent = new Intent(CheckCharacter.this,
                         HomeActivity.class);
                 startActivity(myIntent);
+            }
+        });
+
+        Button equip = (Button) findViewById(R.id.equipments);
+        equip.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View arg0) {
+                for(Item item : Home.getHome().getPlayer().getEquipments()){
+                    ImageView iv = new ImageView(CheckCharacter.this);
+                    int id = getResources().getIdentifier("e"+item.getId(), "drawable", getPackageName());
+                    iv.setImageDrawable(CheckCharacter.this.getDrawable(id));
+                    backpack.addView(iv);
+                }
             }
         });
 
