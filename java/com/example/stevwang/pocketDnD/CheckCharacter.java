@@ -56,12 +56,26 @@ public class CheckCharacter extends AppCompatActivity {
             }
         });
 
-        Button equip = (Button) findViewById(R.id.equipments);
-        equip.setOnClickListener(new View.OnClickListener(){
+        Button equipButton = (Button) findViewById(R.id.equipments);
+        equipButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View arg0) {
+                backpack.removeAllViews();
                 for(Item item : Home.getHome().getPlayer().getEquipments()){
                     ImageView iv = new ImageView(CheckCharacter.this);
                     int id = getResources().getIdentifier("e"+item.getId(), "drawable", getPackageName());
+                    iv.setImageDrawable(CheckCharacter.this.getDrawable(id));
+                    backpack.addView(iv);
+                }
+            }
+        });
+
+        Button itemsButton = (Button) findViewById(R.id.items);
+        itemsButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View arg0) {
+                backpack.removeAllViews();
+                for(Item item : Home.getHome().getPlayer().getItems()){
+                    ImageView iv = new ImageView(CheckCharacter.this);
+                    int id = getResources().getIdentifier("c"+item.getId(), "drawable", getPackageName());
                     iv.setImageDrawable(CheckCharacter.this.getDrawable(id));
                     backpack.addView(iv);
                 }
