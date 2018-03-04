@@ -1,10 +1,17 @@
 package World;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -16,6 +23,12 @@ import Objects.Location;
 
 public class MyFileReader {
 
+    /**
+     * Read in file content such as
+     * Human=194
+     * @param path
+     * @return
+     */
     static Hashtable<String, Integer> readFromFile(String path) {
 		
 		Hashtable<String, Integer> charconst  = new Hashtable<String, Integer>();
@@ -136,7 +149,46 @@ public class MyFileReader {
         return items;
     }
 
-	public static void main(String[] args){
+    static public void writeToFileInternalStorage(String filename, String content){
+        try{
+            Log.d("debug","writing files");
+            File file = new File(App.getContext().getFilesDir(), filename);
+            if(!file.exists())
+                file.mkdir();
+            Log.d("debug","path is "+file.getPath());
+            FileOutputStream stream = new FileOutputStream(file);
+            stream.write(content.getBytes());
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception","File write failed");
+        }
+    }
+
+    static public ArrayList<String> readFileFromInternalStorage(String filename) {
+        ArrayList<String> charconst  = new ArrayList<String>();
+        File file = new File(App.getContext().getFilesDir(), filename);
+        if(!file.exists())
+            file.mkdir();
+        try {
+            FileInputStream is = new FileInputStream(file);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            String line = null;
+            while((line = br.readLine()) != null) {
+                charconst.add(line);
+            }
+            // Always close files.
+            br.close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception","File read failed");
+        }
+        return charconst;
+    }
+
+    public static void main(String[] args){
 	    readFromFile2("FightDialog.txt");
 	}
+
 }

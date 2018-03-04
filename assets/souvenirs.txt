@@ -1,5 +1,5 @@
 91000=Bronze Badge=An adventurer who is new to this adventurous world.
 92000=Silver Badge=A symbol of a warrior whom others could count on.
 93000=Gold Badge=A respected hero who could lead with example and take on extraordinary challenges.
-94000=Platium Badge=A legendary hero who common folks sings song and write poem to remember.
+94000=Platinum Badge=A legendary hero who common folks sing songs and write poems to remember.
 95000=Grand Master Badge=The head of an order which has strength to either raise or topple a kingdom.

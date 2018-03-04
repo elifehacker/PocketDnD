@@ -1,4 +1,5 @@
 package World;
+import java.util.ArrayList;
 import java.util.Random;
 
 import Creatures.Creature;
@@ -8,6 +9,7 @@ public class WorldEngine {
 	
 	public static int pause = 0;
 	public static int training = 0;
+	public static String time = MyFileReader.readFileFromInternalStorage("time.txt").get(0);
 
 	public static int getRandomInteger(int from, int var) {
         Random rnd = new Random();
