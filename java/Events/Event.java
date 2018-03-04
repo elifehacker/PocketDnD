@@ -59,8 +59,9 @@ public class Event {
 			int dmg = World.WorldEngine.getRandomInteger(player.getHealth()/20, player.getHealth()/20);
 			player.incDamage(dmg);
 			MessagePrinter.print("Health reduced by "+dmg+" to "+player.getCurrentHealth());
-			if(player.getCurrentHealth()<=0)
+			if(player.getCurrentHealth()<=0) {
 				return -1;
+			}
 		}
 		
 		try {

@@ -10,6 +10,22 @@ public class Consumable extends Item{
         this.effect = ef;
     }
 
+    public String getEffect(){
+        return this.effect;
+    }
+
+    public String getEffectType(){
+        return this.getEffect().split("@")[0];
+    }
+
+    public String getEffectAttribute(){
+        return this.getEffect().split("@")[1];
+    }
+
+    public String getEffectMagnitude(){
+        return this.getEffect().split("@")[2];
+    }
+
     public void use(){
         //update owner stat base on id;
     }

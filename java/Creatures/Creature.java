@@ -284,8 +284,15 @@ public class Creature {
 	}
 	public void incDamage(int dmg) {
 		// TODO Auto-generated method stub
-		damage+= dmg; 
+		this.damage+= dmg;
 	}
+
+	public void decDamage(int dmg) {
+		// TODO Auto-generated method stub
+		this.damage-= dmg;
+		if(this.damage<0) this.damage=0;
+	}
+
 	public void clearDamge() {
 		damage = 0;
 	}

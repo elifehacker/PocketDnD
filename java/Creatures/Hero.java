@@ -99,6 +99,29 @@ public class Hero extends Creature{
 		// TODO Auto-generated method stub
 		rank++;
 	}
-	
-	
+
+	public void useRecoveryItem(){
+		if(this.getCurrentHealth()<=0){
+			for(int i = 0; i < this.getItems().size(); i++){
+				Consumable it = this.getItems().get(i);
+				if(it.getEffectType().equals("Rec") && it.getEffectAttribute().equals("HTH")){
+					if(it.getEffectMagnitude().contains("%")){
+						int amount = Integer.parseInt(it.getEffectMagnitude().split("%")[0]);
+						this.decDamage(this.getHealth()*amount/100);
+					}else {
+						this.decDamage(Integer.parseInt(it.getEffectMagnitude()));
+					}
+					MessagePrinter.print("Used item "+it.getName()+". Recovered "+it.getEffectMagnitude()+ " health.");
+					this.consumables.remove(i);
+					break;
+				}
+			}
+		}
+	}
+
+	public void faint(){
+		this.setGold(this.getGold()/2);
+		MessagePrinter.print(this.getName()+" has no health and fainted. Gold collected halved.");
+	}
+
 }

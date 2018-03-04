@@ -117,8 +117,14 @@ public class Adventure {
 				MessagePrinter.print("=== At "+ev.getLocation().getName()+" ===");
 				int result = ev.start(player);
 				if(result==-1) {
-					player.setGold(player.getGold()/2);
-					MessagePrinter.print(player.getName()+" has no health and fainted. Gold collected halved.");
+					//player has 0 or less health, try using a recovery item.
+					MessagePrinter.print("[!] Our hero "+ player.getName()+" has no health left!");
+					player.useRecoveryItem();
+					if(player.getCurrentHealth()>0) {
+						continue;
+					}else{
+						player.faint();
+					}
 					return false;
 				}else {
 					if(result==1) succeeded++;
@@ -147,8 +153,8 @@ public class Adventure {
 			//1 consumable
 			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
 		}else if(40<rnd && rnd<=65){
-			//3 consumables
-			for(int i = 0; i <3; i++){
+			//2 consumables
+			for(int i = 0; i <2; i++){
 				player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
 			}
 		}else if(65<rnd && rnd<=90){
@@ -156,11 +162,10 @@ public class Adventure {
 			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
 
 		}else if(90<rnd&& rnd<=120){
-			//1 equipment and 2 consumables
+			//1 equipment and 1 consumables
 			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
-			for(int i = 0; i <2; i++){
-				player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
-			}
+			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+
 		}else if(120<rnd) {
 			//2 equipments and 1 consumable
 			for (int i = 0; i < 2; i++) {
