@@ -1,10 +1,13 @@
 package com.example.stevwang.pocketDnD;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 
 public class TableActivity extends AppCompatActivity {
 
@@ -25,6 +28,16 @@ public class TableActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
+        ImageView bp_weapon = (ImageView) findViewById(R.id.bp_weapon);
+        bp_weapon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(TableActivity.this,
+                        CheckCharacter.class);
+                startActivity(myIntent);
+            }
+        });
 
     }
 }

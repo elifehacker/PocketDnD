@@ -165,6 +165,11 @@ public class MyFileReader {
         }
     }
 
+    /**
+     * This is the same as readFromFile2 except it does not read from asset
+     * @param filename
+     * @return
+     */
     static public ArrayList<String> readFileFromInternalStorage(String filename) {
         ArrayList<String> charconst  = new ArrayList<String>();
         File file = new File(App.getContext().getFilesDir(), filename);
