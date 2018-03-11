@@ -39,6 +39,17 @@ public class GardenActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton inventory = findViewById(R.id.inventory);
+        inventory.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(GardenActivity.this,
+                        InventoryActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
     }
 
 }

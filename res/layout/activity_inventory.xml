@@ -45,54 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/Weapon"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:id="@+id/imageView2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    app:srcCompat="@drawable/boots2426" />
-
-                                <TextView
-                                    android:id="@+id/textView"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:text="TextView" />
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
-                        </TableLayout>
-                    </ScrollView>
-                </LinearLayout>
+                <include
+                    android:id="@+id/included_tab"
+                    layout="@layout/fragment_tab"/>
 
                 <LinearLayout
                     android:id="@+id/Armor"
