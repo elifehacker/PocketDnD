@@ -1,17 +1,10 @@
 package com.example.stevwang.pocketDnD;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageButton;
-
-import Objects.Home;
-import World.MessagePrinter;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -25,7 +18,7 @@ public class GardenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.exterior);
+        setContentView(R.layout.activity_garden);
         mContentView = findViewById(R.id.fullscreen_content);
         int uioptions = View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN

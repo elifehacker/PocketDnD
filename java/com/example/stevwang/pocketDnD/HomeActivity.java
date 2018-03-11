@@ -1,12 +1,9 @@
 package com.example.stevwang.pocketDnD;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,7 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.interior);
+        setContentView(R.layout.activity_home);
         mContentView = findViewById(R.id.fullscreen_content);
         int uioptions = View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -70,6 +67,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
+        ImageButton inventory = findViewById(R.id.inventory);
+        inventory.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+
+                // Start NewActivity.class
+                Intent myIntent = new Intent(HomeActivity.this,
+                        InventoryActivity.class);
+                startActivity(myIntent);
+            }
+        });
 
         ImageView character = (ImageView)findViewById(R.id.character);
         if (character != null) {

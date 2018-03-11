@@ -76,6 +76,14 @@
             android:layout_above="@+id/ToGarden"
             android:layout_alignParentEnd="true"
             app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <ImageButton
+            android:id="@+id/inventory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/checkCharacter"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
     </RelativeLayout>
 
     <!-- This FrameLayout insets its children based on system windows using
