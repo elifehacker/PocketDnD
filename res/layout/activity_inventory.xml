@@ -46,16 +46,12 @@
                 android:layout_height="match_parent">
 
                 <include
-                    android:id="@+id/included_tab"
-                    layout="@layout/fragment_tab"/>
+                    android:id="@+id/weapon_tab"
+                    layout="@layout/tab_weapon"/>
 
-                <LinearLayout
-                    android:id="@+id/Armor"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/armor_tab"
+                    layout="@layout/tab_armor"/>
 
                 <LinearLayout
                     android:id="@+id/Boots"
