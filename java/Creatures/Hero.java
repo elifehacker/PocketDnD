@@ -124,4 +124,9 @@ public class Hero extends Creature{
 		MessagePrinter.print(this.getName()+" has no health and fainted. Gold collected halved.");
 	}
 
+	public void stripGears(){
+		this.equipments.clear();
+		this.consumables.clear();
+	}
+
 }

@@ -6,6 +6,7 @@ import Creatures.Creature;
 import Creatures.Hero;
 import Objects.Items.Consumable;
 import Objects.Items.Equipment;
+import Objects.Items.Item;
 import Objects.Items.Souvenir;
 import World.MessagePrinter;
 
@@ -28,12 +29,16 @@ public class Home {
 	private ArrayList<Souvenir> souvenirs;
 
 	private Home() {
-		residents = new ArrayList<Creature>();
+		this.residents = new ArrayList<Creature>();
 		Hero h = new Hero();
 		h.levelup(3);
-		residents.add(h);
-		player = h;
+		this.residents.add(h);
+		this.player = h;
 		setReputation();
+
+		this.consumables = new ArrayList<Consumable>();
+		this.equipments = new ArrayList<Equipment>();
+		this.souvenirs = new ArrayList<Souvenir>();
 	}
 	
 	private void setReputation() {
@@ -96,8 +101,12 @@ public class Home {
 				
 				this.gold += player.getGold();
 				MessagePrinter.print("Gold collected "+player.getGold());
-				
 				player.setGold(0);
+
+				putGearFromBackpackToHome("Items", player.getItems(), this.consumables);
+				putGearFromBackpackToHome("Equipments", player.getEquipments(), this.equipments);
+				player.stripGears();
+
 				setReputation();
 				player.clearDamge();
 				athome = true;
@@ -105,6 +114,16 @@ public class Home {
 				this.printAll();
 			}
 		}
+	}
+
+	private <T> void putGearFromBackpackToHome (String str, ArrayList<T> fromlist, ArrayList<T> tolist){
+		MessagePrinter.print(str+" collected:");
+		StringBuffer sb = new StringBuffer();
+		for(T item : fromlist){
+			sb.append(((Item)item).getName()+". ");
+			tolist.add(item);
+		}
+		MessagePrinter.print(sb.toString());
 	}
 	
 	public static Home getHome() {
@@ -144,7 +163,7 @@ public class Home {
 		}
         MessagePrinter.print("**** Home **** ");
 
-		while(Home.getHome().getReputation()<30) {
+		while(Home.getHome().getReputation()<20) {
 			int num = World.WorldEngine.getRandomInteger(0, 6);
 			if(num<4) Home.getHome().train(num);
 			if(num >= 4) Home.getHome().goAdventure();
