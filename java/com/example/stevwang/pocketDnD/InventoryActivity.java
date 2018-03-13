@@ -1,19 +1,18 @@
 package com.example.stevwang.pocketDnD;
 
+import android.app.ActivityGroup;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class InventoryActivity extends AppCompatActivity {
+public class InventoryActivity extends ActivityGroup {
 
     private View mContentView;
 
@@ -33,7 +32,7 @@ public class InventoryActivity extends AppCompatActivity {
 
 
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
-        tabHost.setup();
+        tabHost.setup(this.getLocalActivityManager());
 
         TabHost.TabSpec newtab = tabHost.newTabSpec("Weapon");
         newtab.setIndicator("Weapon");
@@ -114,6 +113,16 @@ public class InventoryActivity extends AppCompatActivity {
         tl2.addView(row2);
         ///
 
+
+        TabHost.TabSpec spec; // Reusable TabSpec for each tab
+        Intent intent; // Reusable Intent for each tab
+
+        spec = tabHost.newTabSpec("Boots"); // Create a new TabSpec using tab host
+        spec.setIndicator("Boots"); // set the “HOME” as an indicator
+        // Create an Intent to launch an Activity for the tab (to be reused)
+        intent = new Intent(this, BootsTabActivity.class);
+        spec.setContent(intent);
+        tabHost.addTab(spec);
 
 
 

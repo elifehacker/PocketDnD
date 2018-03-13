@@ -44,6 +44,10 @@
             android:name=".InventoryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".BootsTabActivity"
+            android:label="@string/title_activity_weapon_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

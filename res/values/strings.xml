@@ -8,5 +8,6 @@
 
     <string name="title_activity_fullscreen_default">FullscreenActivityDefault</string>
     <string name="check_character">Check Character</string>
+    <string name="title_activity_weapon_tab">BootsTabActivity</string>
 
 </resources>
