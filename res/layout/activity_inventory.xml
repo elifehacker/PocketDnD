@@ -53,13 +53,10 @@
                     android:id="@+id/armor_tab"
                     layout="@layout/tab_armor"/>
 
-                <LinearLayout
-                    android:id="@+id/Boots"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <include
+                    android:id="@+id/boots_tab"
+                    layout="@layout/tab_boots"/>
 
-                </LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

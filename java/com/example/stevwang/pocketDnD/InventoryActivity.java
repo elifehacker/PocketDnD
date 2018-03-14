@@ -12,6 +12,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import Objects.Items.Equipment;
+
 public class InventoryActivity extends ActivityGroup {
 
     private View mContentView;
@@ -34,11 +38,34 @@ public class InventoryActivity extends ActivityGroup {
         TabHost tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.setup(this.getLocalActivityManager());
 
-        TabHost.TabSpec newtab = tabHost.newTabSpec("Weapon");
-        newtab.setIndicator("Weapon");
-        newtab.setContent(R.id.weapon_tab);
+        /*
+        //The following code works but I decide to handle it in the same activity.
+        TabHost.TabSpec spec; // Reusable TabSpec for each tab
+        Intent intent; // Reusable Intent for each tab
 
-        TableLayout tl = (TableLayout) findViewById(R.id.weapon_table_layout);
+        spec = tabHost.newTabSpec("Boots"); // Create a new TabSpec using tab host
+        spec.setIndicator("Boots"); // set the “HOME” as an indicator
+        // Create an Intent to launch an Activity for the tab (to be reused)
+        intent = new Intent(this, BootsTabActivity.class);
+        spec.setContent(intent);
+        tabHost.addTab(spec);
+        */
+
+        tabHost.addTab(setTab(tabHost, "Weapon", R.id.weapon_tab, R.id.weapon_table_layout));
+        tabHost.addTab(setTab(tabHost, "Armor", R.id.armor_tab, R.id.armor_table_layout));
+        tabHost.addTab(setTab(tabHost, "Boots", R.id.boots_tab, R.id.boots_table_layout));
+
+    }
+
+
+    private TabHost.TabSpec setTab(TabHost tabHost, String tagname, int tabid, int layoutid){
+        TabHost.TabSpec newtab = tabHost.newTabSpec(tagname);
+        newtab.setIndicator(tagname);
+        newtab.setContent(tabid);
+
+        TableLayout tl = (TableLayout) findViewById(layoutid);
+
+        
         TableRow row = new TableRow(this);
         ImageButton ib = new ImageButton(this);
         ib.setClickable(true);
@@ -72,69 +99,7 @@ public class InventoryActivity extends ActivityGroup {
         row.addView(tv);
         tl.addView(row);
 
-
-        ///
-        TabHost.TabSpec newtab2 = tabHost.newTabSpec("Armor");
-        newtab2.setIndicator("Armor");
-        newtab2.setContent(R.id.armor_tab);
-
-        TableLayout tl2 = (TableLayout) findViewById(R.id.armor_table_layout);
-        TableRow row2 = new TableRow(this);
-        ImageButton ib2 = new ImageButton(this);
-        ib2.setClickable(true);
-        ib2.setImageDrawable(getDrawable(R.drawable.e41000));
-        TextView tv2 = new TextView(this);
-        tv2.setText("bcd");
-
-
-        TableRow.LayoutParams param3 = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                0.2f);
-        tv2.setLayoutParams(param);
-        TableRow.LayoutParams param4 = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                0.8f);
-        ib2.setLayoutParams(param3);
-        tv2.setLayoutParams(param4);
-
-        Log.d("debug", "began");
-
-        ib2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("debug", "clicked");
-
-            }
-        });
-        row2.addView(ib2);
-        row2.addView(tv2);
-        tl2.addView(row2);
-        ///
-
-
-        TabHost.TabSpec spec; // Reusable TabSpec for each tab
-        Intent intent; // Reusable Intent for each tab
-
-        spec = tabHost.newTabSpec("Boots"); // Create a new TabSpec using tab host
-        spec.setIndicator("Boots"); // set the “HOME” as an indicator
-        // Create an Intent to launch an Activity for the tab (to be reused)
-        intent = new Intent(this, BootsTabActivity.class);
-        spec.setContent(intent);
-        tabHost.addTab(spec);
-
-
-
-        tabHost.addTab(newtab);
-        tabHost.addTab(newtab2);
-
-
-    }
-
-
-    void setTab(){
-
+        return newtab;
     }
 
 
