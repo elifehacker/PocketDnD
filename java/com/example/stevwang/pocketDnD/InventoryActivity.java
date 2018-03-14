@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import Objects.Home;
 import Objects.Items.Equipment;
 
 public class InventoryActivity extends ActivityGroup {
@@ -64,40 +65,49 @@ public class InventoryActivity extends ActivityGroup {
         newtab.setContent(tabid);
 
         TableLayout tl = (TableLayout) findViewById(layoutid);
+        ArrayList<Equipment> list = null;
+        if(tagname.equals("Weapon")){
+            list = Home.getHome().getEquipments();
+        }
+        if(list!= null){
+            for(Equipment eqp: list){
 
-        
-        TableRow row = new TableRow(this);
-        ImageButton ib = new ImageButton(this);
-        ib.setClickable(true);
-        ib.setImageDrawable(getDrawable(R.drawable.e41000));
-        TextView tv = new TextView(this);
-        tv.setText("abc");
+                TableRow row = new TableRow(this);
+                ImageButton ib = new ImageButton(this);
+                ib.setClickable(true);
+                int id = getResources().getIdentifier("e"+eqp.getId(), "drawable", getPackageName());
+                ib.setImageDrawable(getDrawable(id));
+                TextView tv = new TextView(this);
+                tv.setText(eqp.getName()+"\n"+eqp.getDescription()+"\n"+eqp.getEffect());
 
 
-        TableRow.LayoutParams param = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                0.2f);
-        tv.setLayoutParams(param);
-        TableRow.LayoutParams param2 = new TableRow.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                0.8f);
-        ib.setLayoutParams(param);
-        tv.setLayoutParams(param2);
+                TableRow.LayoutParams param = new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        0.2f);
+                tv.setLayoutParams(param);
+                TableRow.LayoutParams param2 = new TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        0.8f);
+                ib.setLayoutParams(param);
+                tv.setLayoutParams(param2);
 
-        Log.d("debug", "began");
+                Log.d("debug", "began");
 
-        ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("debug", "clicked");
+                ib.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.d("debug", "clicked");
 
+                    }
+                });
+                row.addView(ib);
+                row.addView(tv);
+                tl.addView(row);
             }
-        });
-        row.addView(ib);
-        row.addView(tv);
-        tl.addView(row);
+        }
+
 
         return newtab;
     }

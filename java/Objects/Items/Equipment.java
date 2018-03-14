@@ -12,5 +12,7 @@ public class Equipment extends Item{
 	public void equip(){
 		//update owner stat base on id;
 	}
-
+	public String getEffect(){
+		return effect;
+	}
 }

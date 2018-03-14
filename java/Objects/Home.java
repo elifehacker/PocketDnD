@@ -139,7 +139,18 @@ public class Home {
 		return this.player;
 	}
 
-	
+	public ArrayList<Equipment> getEquipments(){
+		return equipments;
+	}
+
+	public ArrayList<Consumable> getConsumables(){
+		return consumables;
+	}
+
+	public ArrayList<Souvenir> getSouvenirs(){
+		return souvenirs;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		if (args.length > 0) {
