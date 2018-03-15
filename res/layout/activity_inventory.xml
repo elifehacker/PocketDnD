@@ -17,47 +17,65 @@
         android:textSize="50sp"
         android:textStyle="bold" />
 
-    <TabHost
-        android:id="@android:id/tabhost"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <TabHost
+            android:id="@android:id/tabhost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@+id/button5"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TabWidget
-                android:id="@android:id/tabs"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <include
-                    android:id="@+id/weapon_tab"
-                    layout="@layout/tab_weapon"/>
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <include
-                    android:id="@+id/armor_tab"
-                    layout="@layout/tab_armor"/>
+                    <include
+                        android:id="@+id/weapon_tab"
+                        layout="@layout/tab_weapon" />
 
-                <include
-                    android:id="@+id/boots_tab"
-                    layout="@layout/tab_boots"/>
+                    <include
+                        android:id="@+id/armor_tab"
+                        layout="@layout/tab_armor" />
 
-            </FrameLayout>
-        </LinearLayout>
-    </TabHost>
+                    <include
+                        android:id="@+id/boots_tab"
+                        layout="@layout/tab_boots" />
+
+                    <include
+                        android:id="@+id/item_tab"
+                        layout="@layout/tab_item" />
+
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Back" />
+    </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

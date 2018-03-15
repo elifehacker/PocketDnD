@@ -1,8 +1,10 @@
 package Objects.Items;
 
+import android.support.annotation.NonNull;
+
 import Creatures.Creature;
 
-public class Item {
+public class Item implements Comparable<Item>{
 	int id;
 	String name;
 	String description;
@@ -45,4 +47,26 @@ public class Item {
 		this.quantity = i;
 	}
 
+	public boolean isWeapon(){
+		if(60000<this.getId()&& this.getId()<90000) return true;
+		return false;
+	}
+
+	public boolean isArmor(){
+		if(50000<this.getId()&& this.getId()<60000) return true;
+		return false;
+	}
+
+	public boolean isBoots(){
+		if(40000<this.getId()&& this.getId()<50000) return true;
+		return false;
+	}
+
+	@Override
+	public int compareTo(@NonNull Item item) {
+		if(item.getId()>this.getId()) return 1;
+		if(item.getId()<this.getId()) return -1;
+
+		return 0;
+	}
 }

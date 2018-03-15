@@ -13,9 +13,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Objects.Home;
+import Objects.Items.Consumable;
 import Objects.Items.Equipment;
+import Objects.Items.Item;
+import World.ItemConst;
 
 public class InventoryActivity extends ActivityGroup {
 
@@ -55,6 +59,7 @@ public class InventoryActivity extends ActivityGroup {
         tabHost.addTab(setTab(tabHost, "Weapon", R.id.weapon_tab, R.id.weapon_table_layout));
         tabHost.addTab(setTab(tabHost, "Armor", R.id.armor_tab, R.id.armor_table_layout));
         tabHost.addTab(setTab(tabHost, "Boots", R.id.boots_tab, R.id.boots_table_layout));
+        tabHost.addTab(setTab(tabHost, "Items", R.id.item_tab, R.id.item_table_layout));
 
     }
 
@@ -65,46 +70,105 @@ public class InventoryActivity extends ActivityGroup {
         newtab.setContent(tabid);
 
         TableLayout tl = (TableLayout) findViewById(layoutid);
-        ArrayList<Equipment> list = null;
+        String tag = "e";
+        ArrayList<Item> list = new ArrayList<Item>();
         if(tagname.equals("Weapon")){
-            list = Home.getHome().getEquipments();
+            for (Equipment eqp: Home.getHome().getEquipments()){
+                if(eqp.isWeapon()){
+                    list.add(eqp);
+                }
+            }
+        }else if (tagname.equals("Armor")){
+            for (Equipment eqp: Home.getHome().getEquipments()){
+                if(eqp.isArmor()){
+                    list.add(eqp);
+                }
+            }
+        }else if (tagname.equals("Boots")){
+            for (Equipment eqp: Home.getHome().getEquipments()){
+                if(eqp.isBoots()){
+                    list.add(eqp);
+                }
+            }
+        }else if (tagname.equals("Items")){
+            list.addAll(Home.getHome().getConsumables());
+            tag = "c";
         }
-        if(list!= null){
-            for(Equipment eqp: list){
-
-                TableRow row = new TableRow(this);
-                ImageButton ib = new ImageButton(this);
-                ib.setClickable(true);
-                int id = getResources().getIdentifier("e"+eqp.getId(), "drawable", getPackageName());
-                ib.setImageDrawable(getDrawable(id));
-                TextView tv = new TextView(this);
-                tv.setText(eqp.getName()+"\n"+eqp.getDescription()+"\n"+eqp.getEffect());
 
 
-                TableRow.LayoutParams param = new TableRow.LayoutParams(
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        0.2f);
-                tv.setLayoutParams(param);
-                TableRow.LayoutParams param2 = new TableRow.LayoutParams(
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        0.8f);
-                ib.setLayoutParams(param);
-                tv.setLayoutParams(param2);
+        if(!list.isEmpty()){
+            Collections.sort(list);
 
-                Log.d("debug", "began");
+            int previd = 0;
+            int amount = 1;
+            TableRow row;
+            ImageButton ib;
+            TextView tv;
+            String text;
+            TextView tv_amount = null;
 
-                ib.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.d("debug", "clicked");
+            for(Item item: list){
 
-                    }
-                });
-                row.addView(ib);
-                row.addView(tv);
-                tl.addView(row);
+                int id = getResources().getIdentifier(tag+item.getId(), "drawable", getPackageName());
+                if(id == previd){
+                    amount++;
+                    tv_amount.setText("x"+amount);
+                }else{
+
+                    row = new TableRow(this);
+                    ib = new ImageButton(this);
+                    ib.setClickable(true);
+
+                    previd = id;
+                    amount = 1;
+
+                    ib.setImageDrawable(getDrawable(id));
+                    tv = new TextView(this);
+
+                    text = item.getName()+"\n"+item.getDescription()+"\n";
+                    if(item instanceof Equipment) text += ((Equipment) item).getEffect();
+                    if(item instanceof Consumable) text += ((Consumable) item).getEffect();
+
+                    tv.setText(text);
+
+                    Log.d("debug", "began");
+
+                    ib.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Log.d("debug", "clicked");
+
+                        }
+                    });
+
+                    tv_amount = new TextView(this);
+                    tv_amount.setText("x"+amount);
+
+                    TableRow.LayoutParams param = new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            0f);
+                    tv.setLayoutParams(param);
+                    TableRow.LayoutParams param2 = new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            1f);
+                    ib.setLayoutParams(param);
+                    tv.setLayoutParams(param2);
+                    TableRow.LayoutParams param3 = new TableRow.LayoutParams(
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            TableRow.LayoutParams.WRAP_CONTENT,
+                            0f);
+                    tv_amount.setLayoutParams(param3);
+                    tv_amount.setSingleLine();
+
+                    row.addView(ib);
+                    row.addView(tv);
+                    row.addView(tv_amount);
+
+                    tl.addView(row);
+                }
+
             }
         }
 
