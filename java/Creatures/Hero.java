@@ -75,6 +75,11 @@ public class Hero extends Creature{
 		this.equipments.add(item);
 	}
 
+	public void addGold(int gold) {
+		MessagePrinter.print("Got "+gold+" gold!");
+		this.gold += gold ;
+	}
+
 	public void setEquipments(ArrayList<Equipment> equipments) {
 		this.equipments = equipments;
 	}

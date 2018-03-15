@@ -1,6 +1,7 @@
 package Objects;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Creatures.Creature;
 import Creatures.Hero;
@@ -105,6 +106,9 @@ public class Home {
 
 				putGearFromBackpackToHome("Items", player.getItems(), this.consumables);
 				putGearFromBackpackToHome("Equipments", player.getEquipments(), this.equipments);
+				Collections.sort(this.consumables);
+				Collections.sort(this.equipments);
+
 				player.stripGears();
 
 				setReputation();

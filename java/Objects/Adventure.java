@@ -146,32 +146,34 @@ public class Adventure {
 		rnd+= suc*20;
 		if(0<rnd && rnd<=15){
 			//fight a mimic
+			MessagePrinter.print("The Chest started moving... It is a Mimic!");
 			Creature mimic = new Creature();
 			mimic.makeAMimic(player.getLevel());
 			return WorldEngine.fight(player, mimic);
+
 		}else if(15<rnd && rnd<=40){
-			//1 consumable
-			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+			MessagePrinter.print("An Empty Chest...");
+
 		}else if(40<rnd && rnd<=65){
-			//2 consumables
-			for(int i = 0; i <2; i++){
-				player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
-			}
-		}else if(65<rnd && rnd<=90){
+			//1 consumables
+			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+			player.addGold(WorldEngine.getRandomInteger(this.difficulty*50,50));
+
+		}else if(65<rnd && rnd<=85){
+			//gold
+			player.addGold(WorldEngine.getRandomInteger(this.difficulty*100,120));
+
+		}else if(85<rnd&& rnd<=110){
 			//1 equipment
 			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
+			player.addGold(WorldEngine.getRandomInteger(this.difficulty*50,50));
 
-		}else if(90<rnd&& rnd<=120){
+		}else if(110<rnd) {
 			//1 equipment and 1 consumables
 			player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(),"equipments"));
 			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
+			player.addGold(WorldEngine.getRandomInteger(this.difficulty*100,150));
 
-		}else if(120<rnd) {
-			//2 equipments and 1 consumable
-			for (int i = 0; i < 2; i++) {
-				player.addEquipment((Equipment) ItemConst.getRandomItem(player.getRank(), "equipments"));
-			}
-			player.addItem((Consumable) ItemConst.getRandomItem(player.getRank(),"consumables"));
 		}
 		return true;
 	}
