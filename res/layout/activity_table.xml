@@ -22,11 +22,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/bp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:ems="10"
+            android:inputType="none"
+            android:text="Backpack"
+            android:textAllCaps="true"
+            android:textStyle="bold|italic" />
+
         <TableLayout
             android:id="@+id/backpack_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_below="@+id/bp_title"
             android:stretchColumns="*">
 
             <TableRow
@@ -43,13 +55,13 @@
                     android:text="Weapon"
                     android:textColor="@android:color/black" />
 
-                <ImageView
-                    android:id="@+id/bp_weapon"
+                <ImageButton
+                    android:id="@+id/bp_im_weapon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:clickable="true"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
+
             </TableRow>
 
             <TableRow
@@ -66,12 +78,13 @@
                     android:text="Armor"
                     android:textColor="@android:color/black" />
 
-                <ImageView
-                    android:id="@+id/imageView16"
+                <ImageButton
+                    android:id="@+id/bp_im_armor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
+
             </TableRow>
 
 
@@ -89,61 +102,60 @@
                     android:text="Boots"
                     android:textColor="@android:color/black" />
 
-                <ImageView
-                    android:id="@+id/imageView14"
+                <ImageButton
+                    android:id="@+id/bp_im_boots"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
+
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_above="@+id/bp_buttons"
+                android:layout_alignParentStart="true">
 
                 <EditText
                     android:id="@+id/editText16"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:editable="false"
                     android:ems="10"
                     android:text="Items"
                     android:textColor="@android:color/black" />
 
-                <ImageView
-                    android:id="@+id/imageView15"
+                <ImageButton
+                    android:id="@+id/bp_im_item1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
 
-                <ImageView
-                    android:id="@+id/imageView17"
+                <ImageButton
+                    android:id="@+id/bp_im_item2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
 
-                <ImageView
-                    android:id="@+id/imageView19"
+                <ImageButton
+                    android:id="@+id/bp_im_item3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/boots2426" />
+                    app:srcCompat="@drawable/blank" />
+
             </TableRow>
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableRow>
         </TableLayout>
 
         <LinearLayout
+            android:id="@+id/bp_buttons"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/backpack_table"
             android:gravity="bottom"
             android:orientation="horizontal">

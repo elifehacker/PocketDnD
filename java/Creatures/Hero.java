@@ -16,7 +16,8 @@ public class Hero extends Creature{
 	private ArrayList<Equipment> equipments;
 	private int nextlevel =(int) (Math.pow(super.getLevel(),CharConst.lvcurve)*100);;
 	private int rank = 1;
-	
+	private ArrayList<Equipment> equiped;
+
 	public Hero() {
 		super();
 		super.types.clear();
@@ -24,7 +25,7 @@ public class Hero extends Creature{
 		super.types.add("Human Hero");
 		this.consumables = new ArrayList<Consumable>();
 		this.equipments = new ArrayList<Equipment>();
-
+		this.equiped = new ArrayList<Equipment>();
 	}
 
 	public int getGold() {

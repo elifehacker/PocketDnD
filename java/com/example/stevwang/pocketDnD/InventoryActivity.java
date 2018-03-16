@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TableLayout;
@@ -56,10 +57,35 @@ public class InventoryActivity extends ActivityGroup {
         tabHost.addTab(spec);
         */
 
-        tabHost.addTab(setTab(tabHost, "Weapon", R.id.weapon_tab, R.id.weapon_table_layout));
-        tabHost.addTab(setTab(tabHost, "Armor", R.id.armor_tab, R.id.armor_table_layout));
-        tabHost.addTab(setTab(tabHost, "Boots", R.id.boots_tab, R.id.boots_table_layout));
-        tabHost.addTab(setTab(tabHost, "Items", R.id.item_tab, R.id.item_table_layout));
+        String intent_value = null;
+
+        if(getIntent().getExtras()!=null){
+            intent_value = getIntent().getExtras().getString("type");
+        }
+
+        tabHost.addTab(setTab(tabHost, "weapon", R.id.weapon_tab, R.id.weapon_table_layout));
+        tabHost.addTab(setTab(tabHost, "armor", R.id.armor_tab, R.id.armor_table_layout));
+        tabHost.addTab(setTab(tabHost, "boots", R.id.boots_tab, R.id.boots_table_layout));
+        tabHost.addTab(setTab(tabHost, "item", R.id.item_tab, R.id.item_table_layout));
+
+        if(intent_value != null ) {
+
+            //int id_tab = getResources().getIdentifier(intent_value+"_tab", "id", getPackageName());
+            //int id_layout = getResources().getIdentifier(intent_value+"_table_layout", "id", getPackageName());
+            //tabHost.addTab(setTab(tabHost, intent_value, id_tab, id_layout));
+
+            //lock on a tab
+
+        }
+
+
+        Button back = (Button) findViewById(R.id.inventory_back_button);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                InventoryActivity.this.onBackPressed();
+            }
+        });
 
     }
 
@@ -72,32 +98,34 @@ public class InventoryActivity extends ActivityGroup {
         TableLayout tl = (TableLayout) findViewById(layoutid);
         String tag = "e";
         ArrayList<Item> list = new ArrayList<Item>();
-        if(tagname.equals("Weapon")){
+        if(tagname.equals("weapon")){
             for (Equipment eqp: Home.getHome().getEquipments()){
                 if(eqp.isWeapon()){
                     list.add(eqp);
                 }
             }
-        }else if (tagname.equals("Armor")){
+        }else if (tagname.equals("armor")){
             for (Equipment eqp: Home.getHome().getEquipments()){
                 if(eqp.isArmor()){
                     list.add(eqp);
                 }
             }
-        }else if (tagname.equals("Boots")){
+        }else if (tagname.equals("boots")){
             for (Equipment eqp: Home.getHome().getEquipments()){
                 if(eqp.isBoots()){
                     list.add(eqp);
                 }
             }
-        }else if (tagname.equals("Items")){
+        }else if (tagname.equals("item")){
             list.addAll(Home.getHome().getConsumables());
             tag = "c";
         }
 
 
         if(!list.isEmpty()){
-            Collections.sort(list);
+
+            //items at home are readily sorted.
+            //Collections.sort(list);
 
             int previd = 0;
             int amount = 1;
@@ -171,7 +199,6 @@ public class InventoryActivity extends ActivityGroup {
 
             }
         }
-
 
         return newtab;
     }

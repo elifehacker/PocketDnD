@@ -49,23 +49,21 @@ public class CheckCharacter extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
-                // Start NewActivity.class
-                Intent myIntent = new Intent(CheckCharacter.this,
-                        HomeActivity.class);
-                startActivity(myIntent);
+            CheckCharacter.this.onBackPressed();
+
             }
         });
 
         Button equipButton = (Button) findViewById(R.id.equipments);
         equipButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View arg0) {
-                backpack.removeAllViews();
-                for(Item item : Home.getHome().getPlayer().getEquipments()){
-                    ImageView iv = new ImageView(CheckCharacter.this);
-                    int id = getResources().getIdentifier("e"+item.getId(), "drawable", getPackageName());
-                    iv.setImageDrawable(CheckCharacter.this.getDrawable(id));
-                    backpack.addView(iv);
-                }
+            backpack.removeAllViews();
+            for(Item item : Home.getHome().getPlayer().getEquipments()){
+                ImageView iv = new ImageView(CheckCharacter.this);
+                int id = getResources().getIdentifier("e"+item.getId(), "drawable", getPackageName());
+                iv.setImageDrawable(CheckCharacter.this.getDrawable(id));
+                backpack.addView(iv);
+            }
             }
         });
 
@@ -92,14 +90,14 @@ public class CheckCharacter extends AppCompatActivity {
 
         Thread thread = new Thread(){
             public void run(){
-                TextView herolog = (TextView) findViewById(R.id.herolog);
-                StringBuffer sb = new StringBuffer();
-                for(String str : MessagePrinter.messages){
-                    sb.append(str);
-                    sb.append("\n");
+            TextView herolog = (TextView) findViewById(R.id.herolog);
+            StringBuffer sb = new StringBuffer();
+            for(String str : MessagePrinter.messages){
+                sb.append(str);
+                sb.append("\n");
 
-                }
-                herolog.setText(sb.toString());
+            }
+            herolog.setText(sb.toString());
             }
         };
         thread.start();

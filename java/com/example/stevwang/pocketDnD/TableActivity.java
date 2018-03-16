@@ -28,13 +28,14 @@ public class TableActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        ImageView bp_weapon = (ImageView) findViewById(R.id.bp_weapon);
+        ImageView bp_weapon = (ImageView) findViewById(R.id.bp_im_weapon);
         bp_weapon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
 
                 // Start NewActivity.class
                 Intent myIntent = new Intent(TableActivity.this,
-                        CheckCharacter.class);
+                        InventoryActivity.class);
+                myIntent.putExtra("type", "weapon");
                 startActivity(myIntent);
             }
         });
