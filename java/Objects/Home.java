@@ -57,13 +57,15 @@ public class Home {
 			
 			training = true;
 			gold-=required;
+			MessagePrinter.print("Training cost "+required+" gold.");
+
 			try {
 				Thread.sleep(World.WorldEngine.training);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			player.improve1stats(index);
+			player.improve1stats(index, false);
 			train_c++;
 			training = false;
 		}

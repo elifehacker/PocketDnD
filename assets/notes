@@ -57,14 +57,14 @@ GROWTH=0
 		type.add("Dragon"); //high strength
 		type.add("Deamon"); //high Int
 		
-		type.add("Human");
+		type.add("Human");//int
 		type.add("Elf");//agi and int
 		type.add("Dwarf");//strength
 		type.add("Orc");//health
-		type.add("Lizardman");
+		type.add("Lizardman");//strength and agi
 		type.add("Mermaid");//agi
 		type.add("Gaint");//health and strength
-		type.add("Hydra");//health and strength		
+		type.add("Hydra");//health and agi
 		
 		type.add("Goblin");//agi
 		type.add("Troll");//strength

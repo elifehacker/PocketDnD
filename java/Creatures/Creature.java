@@ -59,10 +59,11 @@ public class Creature {
 		stats = list;			
 	}
 	
-	public void improve1stats(int index) {
+	public void improve1stats(int index, boolean silence) {
 		int value = stats.get(index);
 		value+=WorldEngine.getRandomInteger(growth,growth/10);
-		MessagePrinter.print("Improved "+CharConst.getStatName(index)+" from "+stats.get(index)+" to "+value);
+		if(!silence)
+			MessagePrinter.print("Improved "+CharConst.getStatName(index)+" from "+stats.get(index)+" to "+value);
 		stats.remove(index);
 		stats.add(index, value);
 	}
