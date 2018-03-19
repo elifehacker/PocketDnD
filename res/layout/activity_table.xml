@@ -128,6 +128,13 @@
                     android:textColor="@android:color/black" />
 
                 <ImageButton
+                    android:id="@+id/bp_im_item0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/blank" />
+
+                <ImageButton
                     android:id="@+id/bp_im_item1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -136,13 +143,6 @@
 
                 <ImageButton
                     android:id="@+id/bp_im_item2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blank" />
-
-                <ImageButton
-                    android:id="@+id/bp_im_item3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/blank" />

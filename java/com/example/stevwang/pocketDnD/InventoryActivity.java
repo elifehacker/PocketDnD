@@ -26,6 +26,8 @@ public class InventoryActivity extends ActivityGroup {
 
     private View mContentView;
 
+    private String intent_value = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +59,10 @@ public class InventoryActivity extends ActivityGroup {
         tabHost.addTab(spec);
         */
 
-        String intent_value = null;
-
         if(getIntent().getExtras()!=null){
-            intent_value = getIntent().getExtras().getString("type");
+            this.intent_value = getIntent().getExtras().getString("type");
+        }else{
+            this.intent_value = null;
         }
 
         tabHost.addTab(setTab(tabHost, "weapon", R.id.weapon_tab, R.id.weapon_table_layout));
@@ -90,7 +92,7 @@ public class InventoryActivity extends ActivityGroup {
     }
 
 
-    private TabHost.TabSpec setTab(TabHost tabHost, String tagname, int tabid, int layoutid){
+    private TabHost.TabSpec setTab(TabHost tabHost, final String tagname, int tabid, int layoutid){
         TabHost.TabSpec newtab = tabHost.newTabSpec(tagname);
         newtab.setIndicator(tagname);
         newtab.setContent(tabid);
@@ -135,7 +137,7 @@ public class InventoryActivity extends ActivityGroup {
             String text;
             TextView tv_amount = null;
 
-            for(Item item: list){
+            for(final Item item: list){
 
                 int id = getResources().getIdentifier(tag+item.getId(), "drawable", getPackageName());
                 if(id == previd){
@@ -161,13 +163,34 @@ public class InventoryActivity extends ActivityGroup {
 
                     Log.d("debug", "began");
 
-                    ib.setOnClickListener(new View.OnClickListener() {
+                    View.OnClickListener listener = new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             Log.d("debug", "clicked");
+                            if(intent_value != null && tagname.equals(intent_value)){
+                                //go back to bakcpack
 
+                                /*
+                                Intent intent = new Intent();
+                                intent.putExtra(tagname, item.getId());
+                                intent = new Intent(InventoryActivity.this, TableActivity.class);
+                                startActivity(intent);
+                                */
+
+                                /*
+                                TableActivity act = (TableActivity) getIntent().getSerializableExtra("MyClass");
+                                act.putIntoBackpack(tagname, item);
+                                InventoryActivity.this.onBackPressed();
+                                */
+                                Intent i = new Intent();
+                                i.putExtra("selected_type", tagname);
+                                i.putExtra("selected_id", ""+item.getId());
+                                setResult(RESULT_OK, i);
+                                finish();
+                            }
                         }
-                    });
+                    };
+                    ib.setOnClickListener(listener);
 
                     tv_amount = new TextView(this);
                     tv_amount.setText("x"+amount);
