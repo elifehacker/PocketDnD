@@ -2,7 +2,9 @@ package Creatures;
 
 import java.util.ArrayList;
 
+import Objects.Backpack;
 import Objects.Items.Consumable;
+import Objects.Items.Effect;
 import Objects.Items.Equipment;
 import Objects.Items.Item;
 import World.CharConst;
@@ -17,6 +19,7 @@ public class Hero extends Creature{
 	private int nextlevel =(int) (Math.pow(super.getLevel(),CharConst.lvcurve)*100);;
 	private int rank = 1;
 	private ArrayList<Equipment> equiped;
+	private ArrayList<Effect> buffs;
 
 	public Hero() {
 		super();
@@ -26,6 +29,7 @@ public class Hero extends Creature{
 		this.consumables = new ArrayList<Consumable>();
 		this.equipments = new ArrayList<Equipment>();
 		this.equiped = new ArrayList<Equipment>();
+		this.buffs = new ArrayList<Effect>();
 	}
 
 	public int getGold() {
@@ -138,10 +142,63 @@ public class Hero extends Creature{
 		MessagePrinter.print(this.getName()+" has no health and fainted. Gold collected halved.");
 	}
 
+	public void equipFromBackpack(Backpack backpack){
+		equip(backpack.getWeapon());
+		equip(backpack.getArmor());
+		equip(backpack.getBoots());
+		getItems().addAll(backpack.getItems());
+		backpack.clearBackpack();
+
+		//player use buff consumable
+		useBuffItem();
+	}
+
+	private void useBuffItem(){
+		for(Consumable item : this.consumables){
+			if(item.isBuffItem()){
+				int attribute = CharConst.getStatIndex(item.getEffectAttribute());
+				int mag = Integer.parseInt(item.getEffectMagnitude().replaceAll("%",""));
+				mag = 100/mag; //if mag was 5%, then the division below is /20
+
+				if(attribute < 4){ //4stats
+					mag = getStat(attribute)/mag;
+					this.buff1stats(attribute, getStat(attribute)/mag,false);
+				}else{ // health, growth level or HTH GRW LVL
+					if(attribute == CharConst.HTH){
+						mag = this.health/mag;
+						this.health += mag;
+					}else if (attribute == CharConst.GRW){
+						mag = this.growth/mag;
+						this.growth += mag;
+					}else if (attribute == CharConst.LVL){
+						this.levelup(this.getLevel()+1);
+					}
+				}
+				buffs.add(new Effect(attribute,mag));
+				this.consumables.remove(item);
+			}
+		}
+	}
+
+	private void deBuff(){
+		for(Effect effect : this.buffs){
+			if(effect.getAttribute()<4){
+				this.debuff1stats(effect.getAttribute(), effect.getMagnitude(), false);
+			}else{
+				if(effect.getAttribute()==CharConst.HTH)
+					this.health-=effect.getMagnitude();
+				if(effect.getAttribute()==CharConst.GRW)
+					this.growth-=effect.getMagnitude();
+			}
+		}
+		buffs.clear();
+	}
+
 	public void stripGears(){
 		this.equipments.clear();
 		this.consumables.clear();
 		this.equiped.clear();
+		this.deBuff();
 	}
 
 }

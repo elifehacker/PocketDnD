@@ -25,7 +25,7 @@ import Objects.Items.Item;
 
 public class TableActivity extends AppCompatActivity implements Serializable {
 
-    static Backpack backpack = new Backpack();;
+    static public Backpack backpack = new Backpack();;
     static int item_counter = 0;
     static Context myContext;
 

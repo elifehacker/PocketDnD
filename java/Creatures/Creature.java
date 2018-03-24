@@ -68,6 +68,57 @@ public class Creature {
 		stats.add(index, value);
 	}
 
+	public void buff1stats(int index, int amount, boolean silence) {
+		int value= 0;
+		int og = 0;
+		if(index <4){
+			og = stats.get(index);
+			value = og+amount;
+
+			stats.remove(index);
+			stats.add(index, value);
+		}else{
+			if(index == CharConst.HTH){
+				og = this.health;
+				value = og +amount;
+				this.health = value;
+			}else if (index == CharConst.GRW){
+				og = this.growth;
+				value = og +amount;
+				this.growth = value;
+			}
+		}
+
+		if(!silence)
+			MessagePrinter.print("Buffed "+CharConst.getStatName(index)+" from "+og+" to "+value);
+	}
+
+	public void debuff1stats(int index, int amount, boolean silence) {
+		int value= 0;
+		int og = 0;
+		if(index <4) {
+			og = stats.get(index);
+			value = og- amount;
+
+			stats.remove(index);
+			stats.add(index, value);
+		}else{
+			if(index == CharConst.HTH){
+				og = this.health;
+				value = og -amount;
+				this.health = value;
+			}else if (index == CharConst.GRW){
+				og = this.growth;
+				value = og -amount;
+				this.growth = value;
+			}
+		}
+
+
+		if(!silence)
+			MessagePrinter.print("Debuffed "+CharConst.getStatName(index)+" from "+og+" to "+value);
+	}
+
 	private void setcheker() {
 		// TODO Auto-generated method stub
 		checker = new HashMap<Character,Integer>();
@@ -87,8 +138,8 @@ public class Creature {
 			this.level++;
 			this.health+=health/10+growth*2;
 			this.damage = 0;
-			set4stats();		
-			this.growth=WorldEngine.getRandomInteger(growth*11,growth)/10;
+			set4stats();
+			this.growth += WorldEngine.getRandomInteger(growth,growth/10);
 			setcheker();
 
 		}
@@ -204,7 +255,7 @@ public class Creature {
         sb.append("health "+this.health+"\n");
         sb.append("strength "+stats.get(CharConst.STR)+"\n");
         sb.append("charisma "+stats.get(CharConst.CHM)+"\n");
-        sb.append("speed "+stats.get(CharConst.AGI)+"\n");
+        sb.append("agility "+stats.get(CharConst.AGI)+"\n");
         sb.append("intel "+stats.get(CharConst.INT)+"\n");
         sb.append("growth "+this.growth+"\n");
         sb.append("Class:");

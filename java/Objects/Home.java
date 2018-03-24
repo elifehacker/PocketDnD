@@ -1,5 +1,7 @@
 package Objects;
 
+import com.example.stevwang.pocketDnD.TableActivity;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -88,7 +90,7 @@ public class Home {
 				athome = false;
 
 				//take stuff from the table to backpack
-				//player.equip();
+				player.equipFromBackpack(TableActivity.backpack);
 
 				int diff = reputation/10;
 				if(World.WorldEngine.getRandomInteger(0, 10)>3)diff--;

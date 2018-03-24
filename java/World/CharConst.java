@@ -16,6 +16,11 @@ public class CharConst {
 	public final static int CHM = 2;
 	public final static int INT = 3;
 
+	public final static int HTH = 4;
+	public final static int GRW = 5;
+	public final static int LVL = 6;
+
+
 	public static ArrayList<String> races = MyFileReader.readFromFile2("races.txt");
 	public static Hashtable<String, Integer> racesLoc = MyFileReader.readFromFile("racesWithLoc.txt");
 
@@ -71,7 +76,21 @@ public class CharConst {
 		if(index == AGI) return "Agility";
 		if(index == CHM) return "Charisma";
 		if(index == INT) return "Intelligence";
+		if(index == HTH) return "Health";
+		if(index == GRW) return "Growth";
+		if(index == LVL) return "Level";
 		return "";
+	}
+
+	public static int getStatIndex(String acronym) {
+		if(acronym.equals("STR")) return STR;
+		if(acronym.equals("AGI")) return AGI;
+		if(acronym.equals("CHM")) return CHM;
+		if(acronym.equals("INT")) return INT;
+		if(acronym.equals("HTH")) return HTH;
+		if(acronym.equals("GRW")) return GRW;
+		if(acronym.equals("LVL")) return LVL;
+		return 99;
 	}
 	
 	public static int binaryGenerator(int loc ) {
