@@ -48,54 +48,19 @@ public class TableActivity extends AppCompatActivity implements Serializable {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        ImageButton bp_weapon = (ImageButton) findViewById(R.id.bp_im_weapon);
-        bp_weapon.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // Start NewActivity.class
-                Intent myIntent = new Intent(TableActivity.this,
-                        InventoryActivity.class);
-                myIntent.putExtra("type", "weapon");
-                startActivityForResult(myIntent, 101);//get item
-            }
-        });
+        setImageButton(R.id.bp_im_weapon, "weapon", this.weapon);
+        setImageButton(R.id.bp_im_armor, "armor", this.armor);
+        setImageButton(R.id.bp_im_boots, "boots", this.boots);
+        try {
+            Item item = getItem(0);
+            setImageButton(R.id.bp_im_item0, "item", item);
+            item = getItem(1);
+            setImageButton(R.id.bp_im_item1, "item", item);
+            item = getItem(2);
+            setImageButton(R.id.bp_im_item2, "item", item);
+        }catch(Exception e){
 
-        ImageButton bp_armor = (ImageButton) findViewById(R.id.bp_im_armor);
-        bp_armor.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // Start NewActivity.class
-                Intent myIntent = new Intent(TableActivity.this,
-                        InventoryActivity.class);
-                myIntent.putExtra("type", "armor");
-                startActivityForResult(myIntent, 101);//get item
-            }
-        });
-
-        ImageButton bp_boots = (ImageButton) findViewById(R.id.bp_im_boots);
-        bp_boots.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                // Start NewActivity.class
-                Intent myIntent = new Intent(TableActivity.this,
-                        InventoryActivity.class);
-                myIntent.putExtra("type", "boots");
-                startActivityForResult(myIntent, 101);//get item
-            }
-        });
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(TableActivity.this,
-                        InventoryActivity.class);
-                myIntent.putExtra("type", "item");
-                startActivityForResult(myIntent, 101);
-            }
-        };
-        ImageButton bp_item0 = (ImageButton) findViewById(R.id.bp_im_item0);
-        ImageButton bp_item1 = (ImageButton) findViewById(R.id.bp_im_item1);
-        ImageButton bp_item2 = (ImageButton) findViewById(R.id.bp_im_item2);
-        bp_item0.setOnClickListener(listener);
-        bp_item1.setOnClickListener(listener);
-        bp_item2.setOnClickListener(listener);
+        }
 
         Button back = (Button) findViewById(R.id.bp_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +69,41 @@ public class TableActivity extends AppCompatActivity implements Serializable {
                 TableActivity.this.onBackPressed();
             }
         });
+
+    }
+
+    private Item getItem(int index){
+        if(this.items == null)
+            return null;
+        if(this.items.size() > index )
+            return this.items.get(index);
+        return null;
+    }
+
+    private void setImageButton(int buttonid, final String typevalue, Item item) {
+
+        ImageButton ib = (ImageButton) findViewById(buttonid);
+        ib.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                // Start NewActivity.class
+                Intent myIntent = new Intent(TableActivity.this,
+                        InventoryActivity.class);
+                myIntent.putExtra("type", typevalue);
+                startActivityForResult(myIntent, 101);//get item
+            }
+        });
+
+        if (item == null) return;
+
+        String item_id = String.valueOf(item.getId());
+        String tag = "e";
+        if (typevalue.equals("item")){
+            tag = "c";
+        }
+        if(ib!=null){
+            int drawable_id = getResources().getIdentifier(tag+item_id, "drawable", getPackageName());
+            ib.setImageDrawable(getDrawable(drawable_id));
+        }
 
     }
 
