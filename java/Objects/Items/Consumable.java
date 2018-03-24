@@ -14,6 +14,14 @@ public class Consumable extends Item{
         return this.effect;
     }
 
+    public boolean isRecoveryItem(){
+        return this.getEffectType().equals("Rec");
+    }
+
+    public boolean isBuffItem(){
+        return this.getEffectType().equals("Max");
+    }
+
     public String getEffectType(){
         return this.getEffect().split("@")[0];
     }

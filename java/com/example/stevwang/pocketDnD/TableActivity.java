@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Objects.Backpack;
 import Objects.Home;
 import Objects.Items.Consumable;
 import Objects.Items.Equipment;
@@ -24,10 +25,7 @@ import Objects.Items.Item;
 
 public class TableActivity extends AppCompatActivity implements Serializable {
 
-    static Equipment weapon = null;
-    static Equipment armor = null;
-    static Equipment boots = null;
-    static ArrayList<Consumable> items = null;
+    static Backpack backpack = new Backpack();;
     static int item_counter = 0;
     static Context myContext;
 
@@ -48,15 +46,17 @@ public class TableActivity extends AppCompatActivity implements Serializable {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 
-        setImageButton(R.id.bp_im_weapon, "weapon", this.weapon);
-        setImageButton(R.id.bp_im_armor, "armor", this.armor);
-        setImageButton(R.id.bp_im_boots, "boots", this.boots);
+        Log.d("debug","onCreate called");
+
+        setImageButton(R.id.bp_im_weapon, "weapon", this.backpack.getWeapon());
+        setImageButton(R.id.bp_im_armor, "armor", this.backpack.getArmor());
+        setImageButton(R.id.bp_im_boots, "boots", this.backpack.getBoots());
         try {
-            Item item = getItem(0);
+            Item item = backpack.getItem(0);
             setImageButton(R.id.bp_im_item0, "item", item);
-            item = getItem(1);
+            item = backpack.getItem(1);
             setImageButton(R.id.bp_im_item1, "item", item);
-            item = getItem(2);
+            item = backpack.getItem(2);
             setImageButton(R.id.bp_im_item2, "item", item);
         }catch(Exception e){
 
@@ -72,12 +72,24 @@ public class TableActivity extends AppCompatActivity implements Serializable {
 
     }
 
-    private Item getItem(int index){
-        if(this.items == null)
-            return null;
-        if(this.items.size() > index )
-            return this.items.get(index);
-        return null;
+    public static Equipment getWeapon() {
+        return backpack.getWeapon();
+    }
+
+    public static Equipment getArmor() {
+        return backpack.getArmor();
+    }
+
+    public static Equipment getBoots() {
+        return backpack.getBoots();
+    }
+
+    public static ArrayList<Consumable> getItems() {
+        return backpack.getItems();
+    }
+
+    public void goAdventureClearTable(){
+        backpack.clearBackpack();
     }
 
     private void setImageButton(int buttonid, final String typevalue, Item item) {
@@ -132,71 +144,12 @@ public class TableActivity extends AppCompatActivity implements Serializable {
         ImageButton ib = (ImageButton)findViewById(image_id);;
         ib.setImageDrawable(getDrawable(drawable_id));
 
-        int item_int_id = Integer.parseInt(item_id);
-
-        if(tagname.equals("weapon")){
-            if(this.weapon!=null && item_int_id != this.weapon.getId()) Home.getHome().getEquipments().add(this.weapon);
-            this.weapon = getEquipmentFromHome(item_id);
-
-        }else if (tagname.equals("armor")){
-            if(this.armor!=null && item_int_id != this.armor.getId()) Home.getHome().getEquipments().add(this.armor);
-            this.armor = getEquipmentFromHome(item_id);
-
-        }else if (tagname.equals("boots")){
-            if(this.boots!=null && item_int_id != this.boots.getId()) Home.getHome().getEquipments().add(this.boots);
-            this.boots = getEquipmentFromHome(item_id);
-
-        }else if (tagname.contains("item")){
-            if(this.items == null)
-                this.items = new ArrayList<Consumable>();
-            Consumable newConsumable = getItemsFromHome(item_id);
-            if(newConsumable != null) {
-                this.items.add(newConsumable);
-            }else{
-                showPopup("Not enough quantity. Maybe the backpack already had it.");
-                return;
-            }
-
-            if(this.items.size() == 4) {
-                //remove and add the item back
-                Consumable con = this.items.remove(0);
-                Home.getHome().getConsumables().add(con);
-            }
-            item_counter++;
-            item_counter %= 3;
-            Log.d("debug", "item_counter is "+item_counter);
-
-        }
-
+        item_counter = backpack.putIntoBackPack(tagname, item_id);
 
     }
 
-    private Equipment getEquipmentFromHome(String id){
-        int int_id = Integer.parseInt(id);
-        for(Equipment eqp : Home.getHome().getEquipments()){
-            if(eqp.getId() == int_id){
-                Equipment ret = eqp;
-                if(Home.getHome().getEquipments().remove(eqp))
-                    return ret;
-            }
-        }
-        return null;
-    }
 
-    private Consumable getItemsFromHome(String id){
-        int int_id = Integer.parseInt(id);
-        for(Consumable eqp : Home.getHome().getConsumables()){
-            if(eqp.getId() == int_id){
-                Log.d("debug", "found item at home ");
-                Consumable ret = eqp;
-                if(Home.getHome().getConsumables().remove(eqp))
-                    return ret;
-            }
-        }
-        return null;
-    }
-
-    private void showPopup(String message){
+    public static void showPopup(String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(myContext);
 
         builder.setTitle("Ops");

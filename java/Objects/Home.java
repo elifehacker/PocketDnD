@@ -86,6 +86,10 @@ public class Home {
 		if(athome) {
 			if(!training) {
 				athome = false;
+
+				//take stuff from the table to backpack
+				//player.equip();
+
 				int diff = reputation/10;
 				if(World.WorldEngine.getRandomInteger(0, 10)>3)diff--;
 

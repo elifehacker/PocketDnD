@@ -54,6 +54,14 @@ public class Hero extends Creature{
 		}
 	}
 
+	public void equip(Equipment eqp){
+		this.equiped.add(eqp);
+	}
+
+	public ArrayList<Equipment> getEquiped(){
+		return this.equiped;
+	}
+
 	public ArrayList<Consumable> getItems() {
 		return consumables;
 	}
@@ -133,6 +141,7 @@ public class Hero extends Creature{
 	public void stripGears(){
 		this.equipments.clear();
 		this.consumables.clear();
+		this.equiped.clear();
 	}
 
 }
