@@ -157,39 +157,23 @@ public class Hero extends Creature{
 		for(Consumable item : this.consumables){
 			if(item.isBuffItem()){
 				int attribute = CharConst.getStatIndex(item.getEffectAttribute());
-				int mag = Integer.parseInt(item.getEffectMagnitude().replaceAll("%",""));
-				mag = 100/mag; //if mag was 5%, then the division below is /20
 
-				if(attribute < 4){ //4stats
-					mag = getStat(attribute)/mag;
-					this.buff1stats(attribute, getStat(attribute)/mag,false);
-				}else{ // health, growth level or HTH GRW LVL
-					if(attribute == CharConst.HTH){
-						mag = this.health/mag;
-						this.health += mag;
-					}else if (attribute == CharConst.GRW){
-						mag = this.growth/mag;
-						this.growth += mag;
-					}else if (attribute == CharConst.LVL){
-						this.levelup(this.getLevel()+1);
-					}
+				if (attribute == CharConst.LVL){
+					this.levelup(this.getLevel()+1);
+				}else{
+					MessagePrinter.print(this.getName()+" had "+item.getName()+" before leaving home.");
+					int mag = this.buff1stats(attribute, item.getEffectMagnitude(),false);
+					buffs.add(new Effect(attribute,mag));
+					this.consumables.remove(item);
 				}
-				buffs.add(new Effect(attribute,mag));
-				this.consumables.remove(item);
+
 			}
 		}
 	}
 
 	private void deBuff(){
 		for(Effect effect : this.buffs){
-			if(effect.getAttribute()<4){
-				this.debuff1stats(effect.getAttribute(), effect.getMagnitude(), false);
-			}else{
-				if(effect.getAttribute()==CharConst.HTH)
-					this.health-=effect.getMagnitude();
-				if(effect.getAttribute()==CharConst.GRW)
-					this.growth-=effect.getMagnitude();
-			}
+			this.debuff1stats(effect.getAttribute(), effect.getMagnitude(), false);
 		}
 		buffs.clear();
 	}

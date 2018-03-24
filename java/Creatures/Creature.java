@@ -13,11 +13,11 @@ import World.WorldEngine;
 public class Creature {
 	private String name;
 	private int level = CharConst.LEVEL;
-	private int health = CharConst.HEALTH;
+	protected int health = CharConst.HEALTH;
 	private int damage = 0;
 	
-	private ArrayList<Integer> stats = null;	
-	private int growth = CharConst.GROWTH;
+	private ArrayList<Integer> stats = null;
+	protected int growth = CharConst.GROWTH;
 	
 	protected ArrayList<String> types = new ArrayList<String>();
 	protected ArrayList<String> weakness ;
@@ -68,29 +68,32 @@ public class Creature {
 		stats.add(index, value);
 	}
 
-	public void buff1stats(int index, int amount, boolean silence) {
+	public int buff1stats(int index, String magnitude, boolean silence) {
 		int value= 0;
 		int og = 0;
+		int d = getDenominator(magnitude);
 		if(index <4){
 			og = stats.get(index);
-			value = og+amount;
+			value = og+og/d;
 
 			stats.remove(index);
 			stats.add(index, value);
 		}else{
 			if(index == CharConst.HTH){
 				og = this.health;
-				value = og +amount;
+				value = og+og/d;
 				this.health = value;
 			}else if (index == CharConst.GRW){
 				og = this.growth;
-				value = og +amount;
+				value = og+og/d;
 				this.growth = value;
 			}
 		}
 
 		if(!silence)
 			MessagePrinter.print("Buffed "+CharConst.getStatName(index)+" from "+og+" to "+value);
+
+		return value;
 	}
 
 	public void debuff1stats(int index, int amount, boolean silence) {
@@ -114,9 +117,14 @@ public class Creature {
 			}
 		}
 
-
 		if(!silence)
 			MessagePrinter.print("Debuffed "+CharConst.getStatName(index)+" from "+og+" to "+value);
+	}
+
+	private int getDenominator(String magnitude){
+		int denominator = Integer.parseInt(magnitude.replaceAll("%",""));
+		denominator = 100/denominator; //if mag was 5%, then the division below is /20
+		return denominator;
 	}
 
 	private void setcheker() {
