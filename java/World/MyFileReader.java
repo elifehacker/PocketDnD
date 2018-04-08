@@ -154,7 +154,7 @@ public class MyFileReader {
             Log.d("debug","writing files");
             File file = new File(App.getContext().getFilesDir(), filename);
             if(!file.exists())
-                file.mkdir();
+                file.createNewFile();
             Log.d("debug","path is "+file.getPath());
             FileOutputStream stream = new FileOutputStream(file);
             stream.write(content.getBytes());
@@ -174,7 +174,11 @@ public class MyFileReader {
         ArrayList<String> charconst  = new ArrayList<String>();
         File file = new File(App.getContext().getFilesDir(), filename);
         if(!file.exists())
-            file.mkdir();
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         try {
             FileInputStream is = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));

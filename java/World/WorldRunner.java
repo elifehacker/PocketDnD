@@ -19,12 +19,8 @@ public class WorldRunner {
 		System.err.println("A young hero, hoping to achieve great wonders.");
 		System.err.println("Would you witness and guide him through his journey?");
 
-		try {
-			Thread.sleep(World.WorldEngine.pause);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		WorldEngine.catchingUpTime(World.WorldEngine.pause);
+
 		System.out.println("**** Home **** ");
 
 		while (Home.getHome().getReputation() < 40) {

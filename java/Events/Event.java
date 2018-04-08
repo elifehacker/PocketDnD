@@ -8,6 +8,7 @@ import Creatures.Hero;
 import Objects.Location;
 import World.EventConst;
 import World.MessagePrinter;
+import World.WorldEngine;
 
 public class Event {
 
@@ -63,13 +64,9 @@ public class Event {
 				return -1;
 			}
 		}
-		
-		try {
-			Thread.sleep(World.WorldEngine.pause);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		WorldEngine.catchingUpTime(World.WorldEngine.pause);
+
 		return 0;
 
 	}

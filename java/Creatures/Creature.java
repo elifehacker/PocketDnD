@@ -289,12 +289,7 @@ public class Creature {
 		MessagePrinter.print("Check "+getType(type)+" against "+target+" Dice count:"+checker.get(type)+"/50="+diceCount);
 		for(int i = 0; i < diceCount;i++) {
 			int newdice = WorldEngine.getRandomInteger(1,6);
-			try {
-				Thread.sleep(World.WorldEngine.pause);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			WorldEngine.catchingUpTime(World.WorldEngine.pause);
 			sum+= newdice;
 			MessagePrinter.print("You rolled "+newdice+" total "+sum);
 			if(sum > target) break;

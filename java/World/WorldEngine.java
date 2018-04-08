@@ -1,5 +1,10 @@
 package World;
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import Creatures.Creature;
@@ -7,10 +12,42 @@ import Creatures.Creature;
 
 public class WorldEngine {
 
-	public static int backpack_repacking = 20000;
-	public static int pause = 0;
-	public static int training = 0;
-	public static String time = MyFileReader.readFileFromInternalStorage("time.txt").get(0);
+	public static int backpack_repacking = 600;
+	public static int pause = 10;
+	public static int training = 10;
+	public static Date previousTime = new Date();;
+	public static Date currentTime = new Date();;
+	private static long duration = getSeconds();
+	private static long counter = 0;
+
+	public static long getSeconds() {
+		ArrayList<String> fileContent = MyFileReader.readFileFromInternalStorage("datetime.txt");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+
+		if(fileContent!= null && !fileContent.isEmpty()){
+			try {
+				previousTime = sdf.parse(fileContent.get(0));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		MyFileReader.writeToFileInternalStorage("datetime.txt", sdf.format(currentTime));
+		Log.d("debug", "compare times: "+previousTime.getTime()+" "+currentTime.getTime());
+		return (currentTime.getTime()-previousTime.getTime())/1000;
+	}
+
+	public static void catchingUpTime(long sec){
+		Log.d("debug", "increase time counter: "+counter+" by "+sec);
+		counter += sec;
+	}
+
+	public static boolean catchingUpTime(){
+		Log.d("debug", "time counter and durations are: "+counter+" and "+duration);
+		if(counter < duration)
+			return true;
+
+		return false;
+	}
 
 	public static int getRandomInteger(int from, int var) {
         Random rnd = new Random();
@@ -70,12 +107,8 @@ public class WorldEngine {
 				spd+= c1.getAgility();
 			}
 			
-			try {
-				Thread.sleep(pause);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			WorldEngine.catchingUpTime(pause);
+
 		}
 		
 		if(c1.getCurrentHealth()>0) {

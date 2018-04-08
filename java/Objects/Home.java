@@ -62,12 +62,8 @@ public class Home {
 			gold-=required;
 			MessagePrinter.print("Training cost "+required+" gold.");
 
-			try {
-				Thread.sleep(World.WorldEngine.training);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			WorldEngine.catchingUpTime(World.WorldEngine.training);
+
 			player.improve1stats(index, false);
 			train_c++;
 			training = false;
@@ -179,13 +175,9 @@ public class Home {
         System.err.println("**** Welcome to the world of Pocket DnD ****");
         System.err.println("A young hero, hoping to achieve great wonders.");
         System.err.println("Would you witness and guide him through his journey?");
-		
-        try {
-			Thread.sleep(World.WorldEngine.pause);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		WorldEngine.catchingUpTime(World.WorldEngine.pause);
+
         MessagePrinter.print("**** Home **** ");
 
 		while(Home.getHome().getReputation()<20) {

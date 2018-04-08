@@ -3,8 +3,15 @@ package com.example.stevwang.pocketDnD;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import Objects.Home;
+import World.MessagePrinter;
+import World.WorldEngine;
+
+import static World.WorldEngine.getSeconds;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -49,6 +56,38 @@ public class GardenActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
+        final long sec = WorldEngine.getSeconds();
+        Log.e("Debug","time difference is "+sec);
+
+        Thread thread = new Thread(){
+
+            public void run(){
+                MessagePrinter.print("A young hero, hoping to achieve great wonders.");
+                MessagePrinter.print("Would you witness and guide him through his journey?");
+                Home.getHome().printAll();
+                boolean waitedForPacking = false;
+
+                while(WorldEngine.catchingUpTime()) {
+                    int num = World.WorldEngine.getRandomInteger(0, 6);
+                    if(num<4) Home.getHome().train(num);
+                    if(num >= 4) {
+
+                        if(!waitedForPacking && TableActivity.isBackpackEmpty()){
+                            MessagePrinter.print("Backpack is empty. Wait for a bit.");
+                            waitedForPacking = true;
+                            WorldEngine.catchingUpTime(WorldEngine.backpack_repacking);
+                            continue;
+                        }
+
+                        Home.getHome().goAdventure();
+                        waitedForPacking = false;
+                    }
+                }
+
+            }
+        };
+        thread.start();
 
     }
 
