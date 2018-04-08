@@ -12,6 +12,7 @@ import Objects.Items.Equipment;
 import Objects.Items.Item;
 import Objects.Items.Souvenir;
 import World.MessagePrinter;
+import World.WorldEngine;
 
 public class Home {
 
@@ -112,8 +113,9 @@ public class Home {
 				MessagePrinter.print("Gold collected "+player.getGold());
 				player.setGold(0);
 
-				putGearFromBackpackToHome("Items", player.getItems(), this.consumables);
-				putGearFromBackpackToHome("Equipments", player.getEquipments(), this.equipments);
+				putGearFromBackpackToHome("Items collected", player.getItems(), this.consumables);
+				putGearFromBackpackToHome("Equipments collected", player.getEquipments(), this.equipments);
+				putGearFromBackpackToHome("Equipments equiped", player.getEquiped(), this.equipments);
 				Collections.sort(this.consumables);
 				Collections.sort(this.equipments);
 
@@ -129,7 +131,7 @@ public class Home {
 	}
 
 	private <T> void putGearFromBackpackToHome (String str, ArrayList<T> fromlist, ArrayList<T> tolist){
-		MessagePrinter.print(str+" collected:");
+		MessagePrinter.print(str+" :");
 		StringBuffer sb = new StringBuffer();
 		for(T item : fromlist){
 			sb.append(((Item)item).getName()+". ");

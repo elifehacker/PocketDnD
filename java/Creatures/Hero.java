@@ -59,7 +59,17 @@ public class Hero extends Creature{
 	}
 
 	public void equip(Equipment eqp){
+		//this needs to be implemented
+		if(eqp == null) return;
+
 		this.equiped.add(eqp);
+
+		int attribute = CharConst.getStatIndex(eqp.getEffectAttribute());
+
+		MessagePrinter.print(this.getName()+" equiped "+eqp.getName()+" before leaving home.");
+		int mag = this.buff1stats(attribute, eqp.getEffectMagnitude(),false);
+		buffs.add(new Effect(attribute,mag));
+
 	}
 
 	public ArrayList<Equipment> getEquiped(){

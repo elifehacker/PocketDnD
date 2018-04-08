@@ -5,7 +5,7 @@
 11100=Peanut Butter Cookie=Double-chocolate dough collides with mounds of smooth, natural peanut butter. Don’t forget the tall glass of cold milk.=Rec@HTH@20%
 12100=Snickerdoodle Cookie=Sweet hints of cinnamon melt in your mouth like warm, homemade apple pie…=Rec@HTH@40%
 14000=Brownie Cookie=Made with sweet ground chocolate, you won’t question why we named this the Brownie Cookie.=Max@GRW@10%
-20000=Hearty Fruit and Oat Smoothie=You'll fill up fast with this strawberry-and-banana-based smoothie that adds oats for extra heartiness.=Max@HTH@5%
+20000=Hearty Fruit and Oat Smoothie=You'll fill up fast with this strawberry-and-banana-based smoothie that adds oats for extra heartiness.=Max@HTH@10%
 22100=Mango and Yogurt Smoothie=Stop chopping! Save precious time in the A.M. with this speedy smoothie recipe that utilizes chunks of frozen mango.=Max@INT@5%
 22200=Green Ginger-Peach Smoothie=Baby spinach gives this smoothie a nutritional boost, as well as its signature green hue.=Max@CHM@5%
 22300=Tropical Blueberry Smoothie=Fresh orange and chopped pineapple add a citrusy, tropical twist to this blueberry-based smoothie.=Max@AGI@5%

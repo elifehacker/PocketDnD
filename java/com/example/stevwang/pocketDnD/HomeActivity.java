@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import Objects.Home;
 import World.MessagePrinter;
+import World.WorldEngine;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -95,10 +96,26 @@ public class HomeActivity extends AppCompatActivity {
                 MessagePrinter.print("A young hero, hoping to achieve great wonders.");
                 MessagePrinter.print("Would you witness and guide him through his journey?");
                 Home.getHome().printAll();
+                boolean waitedForPacking = false;
                 while(Home.getHome().getReputation()<30) {
                     int num = World.WorldEngine.getRandomInteger(0, 6);
                     if(num<4) Home.getHome().train(num);
-                    if(num >= 4) Home.getHome().goAdventure();
+                    if(num >= 4) {
+
+                        if(!waitedForPacking && TableActivity.isBackpackEmpty()){
+                            try {
+                                MessagePrinter.print("Backpack is empty. Wait for a bit.");
+                                waitedForPacking = true;
+                                Thread.sleep(WorldEngine.backpack_repacking);
+                                continue;
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        Home.getHome().goAdventure();
+                        waitedForPacking = false;
+                    }
                 }
             }
         };

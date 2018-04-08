@@ -6,7 +6,8 @@ import Creatures.Creature;
 
 
 public class WorldEngine {
-	
+
+	public static int backpack_repacking = 20000;
 	public static int pause = 0;
 	public static int training = 0;
 	public static String time = MyFileReader.readFileFromInternalStorage("time.txt").get(0);

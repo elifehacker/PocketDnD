@@ -92,6 +92,14 @@ public class TableActivity extends AppCompatActivity implements Serializable {
         backpack.clearBackpack();
     }
 
+    public static boolean isBackpackEmpty(){
+        if(getWeapon() != null || getArmor() != null || getBoots()!= null)
+            return false;
+        if(getItems()!= null && !getItems().isEmpty())
+            return false;
+        return true;
+    }
+
     private void setImageButton(int buttonid, final String typevalue, Item item) {
 
         ImageButton ib = (ImageButton) findViewById(buttonid);

@@ -93,7 +93,7 @@ public class Creature {
 		if(!silence)
 			MessagePrinter.print("Buffed "+CharConst.getStatName(index)+" from "+og+" to "+value);
 
-		return value;
+		return value - og;
 	}
 
 	public void debuff1stats(int index, int amount, boolean silence) {
@@ -288,14 +288,15 @@ public class Creature {
 		if(diceCount==0) diceCount = 1;
 		MessagePrinter.print("Check "+getType(type)+" against "+target+" Dice count:"+checker.get(type)+"/50="+diceCount);
 		for(int i = 0; i < diceCount;i++) {
-			sum+=WorldEngine.getRandomInteger(1,6);
+			int newdice = WorldEngine.getRandomInteger(1,6);
 			try {
 				Thread.sleep(World.WorldEngine.pause);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			MessagePrinter.print("You rolled "+sum);
+			sum+= newdice;
+			MessagePrinter.print("You rolled "+newdice+" total "+sum);
 			if(sum > target) break;
 
 		}

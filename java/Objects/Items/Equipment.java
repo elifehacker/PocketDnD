@@ -15,4 +15,13 @@ public class Equipment extends Item{
 	public String getEffect(){
 		return effect;
 	}
+
+	public String getEffectAttribute(){
+		return this.getEffect().split("@")[1];
+	}
+
+	public String getEffectMagnitude(){
+		return this.getEffect().split("@")[2];
+	}
+
 }
