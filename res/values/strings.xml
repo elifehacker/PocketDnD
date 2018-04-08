@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">PocketDnD</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content"></string>
