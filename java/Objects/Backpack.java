@@ -18,7 +18,7 @@ public class Backpack {
     private Equipment weapon = null;
     private Equipment armor = null;
     private Equipment boots = null;
-    private ArrayList<Consumable> items = null;
+    private ArrayList<Consumable> items = new ArrayList<Consumable>();
 
     static int item_counter = 0;
 
@@ -58,7 +58,7 @@ public class Backpack {
         this.weapon = null;
         this.armor = null;
         this.boots = null;
-        this.items = null;
+        this.items = new ArrayList<Consumable>();
     }
 
     public Item getItem(int index){
