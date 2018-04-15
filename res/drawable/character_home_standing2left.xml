@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chome_standing2left"
+    android:oneshot="false">
+    <item android:drawable="@drawable/charsim" android:duration="2000" />
+    <item android:drawable="@drawable/charsim_1" android:duration="100" />
+</animation-list>

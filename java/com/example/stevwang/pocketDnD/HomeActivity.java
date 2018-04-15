@@ -87,6 +87,14 @@ public class HomeActivity extends AppCompatActivity {
             frameAnimation.setVisible(true, true);
             frameAnimation.start();
         }
+
+        ImageView character2 = (ImageView)findViewById(R.id.character2);
+        if (character2 != null) {
+            character2.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)character2.getDrawable();
+            frameAnimation.setVisible(true, true);
+            frameAnimation.start();
+        }
         //character.setX(200);
         //character.setY(600);
 
