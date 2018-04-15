@@ -95,8 +95,22 @@ public class HomeActivity extends AppCompatActivity {
             frameAnimation.setVisible(true, true);
             frameAnimation.start();
         }
-        //character.setX(200);
-        //character.setY(600);
+
+        ImageView character3 = (ImageView)findViewById(R.id.character3);
+        if (character3 != null) {
+            character3.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)character3.getDrawable();
+            frameAnimation.setVisible(true, true);
+            frameAnimation.start();
+        }
+
+        ImageView character4 = (ImageView)findViewById(R.id.character4);
+        if (character4 != null) {
+            character4.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)character4.getDrawable();
+            frameAnimation.setVisible(true, true);
+            frameAnimation.start();
+        }
 
     }
 

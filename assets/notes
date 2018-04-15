@@ -80,3 +80,22 @@ GROWTH=0
 
 		//character animation
 		//http://ro-character-simulator.ratemyserver.net/##
+
+
+		//on the stairs
+        character2.setX(550);
+        character2.setY(950);
+
+        // on the left most chair
+        character2.setX(170);
+        character2.setY(1310);
+
+		//chair by the table closest to the bottom
+		        character2.setX(130);
+                character2.setY(1075);
+
+        //corner between book shelf and wall on the left
+        character2.setX(60);
+        character2.setY(800);
+
+

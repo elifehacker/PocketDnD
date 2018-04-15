@@ -29,8 +29,28 @@
                 android:id="@+id/character2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:translationX="55dp"
+                android:translationY="430dp"
                 android:visibility="visible"
                 app:srcCompat="@drawable/character_home_sitting" />
+
+            <ImageView
+                android:id="@+id/character3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="820dp"
+                android:translationY="300dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/character_home_standing2left" />
+
+            <ImageView
+                android:id="@+id/character4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:translationX="800dp"
+                android:translationY="160dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/character_home_casting" />
 
             <ImageView
                 android:id="@+id/character"
