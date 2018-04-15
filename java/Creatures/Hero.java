@@ -15,7 +15,6 @@ public class Hero extends Creature{
 	private int gold = 0;
 	private int exp = 0;
 	private ArrayList<Consumable> consumables;
-	private ArrayList<Equipment> equipments;
 	private int nextlevel =(int) (Math.pow(super.getLevel(),CharConst.lvcurve)*100);;
 	private int rank = 1;
 	private ArrayList<Equipment> equiped;
@@ -53,7 +52,7 @@ public class Hero extends Creature{
 		while(exp>=nextlevel) {
 			this.exp = this.exp-nextlevel;
 			MessagePrinter.print("****Level UP to "+(super.getLevel()+1)+"****");
-			super.levelup(super.getLevel()+1);
+			super.levelup(super.getLevel()+1, false);
 			this.nextlevel=(int) (Math.pow(super.getLevel(),CharConst.lvcurve)*100);
 		}
 	}
@@ -169,7 +168,7 @@ public class Hero extends Creature{
 				int attribute = CharConst.getStatIndex(item.getEffectAttribute());
 
 				if (attribute == CharConst.LVL){
-					this.levelup(this.getLevel()+1);
+					this.levelup(this.getLevel()+1, false);
 				}else{
 					MessagePrinter.print(this.getName()+" had "+item.getName()+" before leaving home.");
 					int mag = this.buff1stats(attribute, item.getEffectMagnitude(),false);

@@ -11,8 +11,6 @@ import Objects.Home;
 import World.MessagePrinter;
 import World.WorldEngine;
 
-import static World.WorldEngine.getSeconds;
-
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -57,37 +55,45 @@ public class GardenActivity extends AppCompatActivity {
             }
         });
 
-        final long sec = WorldEngine.getSeconds();
+
+
+        MessagePrinter.print("A young hero, hoping to achieve great wonders.");
+        MessagePrinter.print("Would you witness and guide him through his journey?");
+
+        final long sec = WorldEngine.getTimePassedSinceLastTime();
         Log.e("Debug","time difference is "+sec);
 
-        Thread thread = new Thread(){
+        if(sec< WorldEngine.processlimit) //avoid abusing quit and start too quickly.
+            return;
 
-            public void run(){
-                MessagePrinter.print("A young hero, hoping to achieve great wonders.");
-                MessagePrinter.print("Would you witness and guide him through his journey?");
-                Home.getHome().printAll();
-                boolean waitedForPacking = false;
+        WorldEngine.storeCurrentTime();
+        WorldEngine.loadData(this, WorldEngine.saveHome);
+        if(!Home.getHome().getAtHome()){
+            //not at home
+            Home.getHome().resumeAdventure();
+        }else{
+            Home.getHome().printAll();
+        }
 
-                while(WorldEngine.catchingUpTime()) {
-                    int num = World.WorldEngine.getRandomInteger(0, 6);
-                    if(num<4) Home.getHome().train(num);
-                    if(num >= 4) {
+        boolean waitedForPacking = false;
 
-                        if(!waitedForPacking && TableActivity.isBackpackEmpty()){
-                            MessagePrinter.print("Backpack is empty. Wait for a bit.");
-                            waitedForPacking = true;
-                            WorldEngine.catchingUpTime(WorldEngine.backpack_repacking);
-                            continue;
-                        }
+        while(WorldEngine.catchingUpTime()) {
+            int num = World.WorldEngine.getRandomInteger(0, 6);
+            if(num<4) Home.getHome().train(num);
+            if(num >= 4) {
 
-                        Home.getHome().goAdventure();
-                        waitedForPacking = false;
-                    }
+                if(!waitedForPacking && TableActivity.isBackpackEmpty()){
+                    MessagePrinter.print("Backpack is empty. Wait for a bit.");
+                    waitedForPacking = true;
+                    WorldEngine.catchingUpTime(WorldEngine.backpack_repacking);
+                    continue;
                 }
 
+                Home.getHome().goAdventure();
+                waitedForPacking = false;
             }
-        };
-        thread.start();
+        }
+        WorldEngine.saveData(this, WorldEngine.saveHome);
 
     }
 

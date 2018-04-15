@@ -1,5 +1,7 @@
 package Objects;
 
+import android.util.Log;
+
 import com.example.stevwang.pocketDnD.TableActivity;
 
 import java.util.ArrayList;
@@ -32,10 +34,14 @@ public class Home {
 	private ArrayList<Equipment> equipments;
 	private ArrayList<Souvenir> souvenirs;
 
+	public Backpack backpack = new Backpack();
+
+	private Adventure currentAdv;
+
 	private Home() {
 		this.residents = new ArrayList<Creature>();
 		Hero h = new Hero();
-		h.levelup(3);
+		h.levelup(3, true);
 		this.residents.add(h);
 		this.player = h;
 		setReputation();
@@ -80,7 +86,11 @@ public class Home {
 		MessagePrinter.print("Successful Adventure: "+this.adv_suc+"/"+(this.adv_fail+this.adv_suc));
 
 	}
-	
+
+	public synchronized void continueAdventure(Adventure adv) {
+
+	}
+
 	public synchronized void goAdventure() {
 		if(athome) {
 			if(!training) {
@@ -93,39 +103,50 @@ public class Home {
 				if(World.WorldEngine.getRandomInteger(0, 10)>3)diff--;
 
 				if (diff<=0) diff =1;
-				
-				Adventure adv = new Adventure(player, diff, 3);
-				MessagePrinter.print("**** Adventure rank "+diff+" starts **** ");
-				this.gold+=100;
-				
-				if(adv.start()) {
-					if (diff == reputation/10)player.incRank();
-					adv_suc++;
-				}else {
-					adv_fail++;
-				}
-				
-				this.gold += player.getGold();
-				MessagePrinter.print("Gold collected "+player.getGold());
-				player.setGold(0);
 
-				putGearFromBackpackToHome("Items collected", player.getItems(), this.consumables);
-				putGearFromBackpackToHome("Equipments collected", player.getEquipments(), this.equipments);
-				putGearFromBackpackToHome("Equipments equiped", player.getEquiped(), this.equipments);
-				Collections.sort(this.consumables);
-				Collections.sort(this.equipments);
-
-				player.stripGears();
-
-				setReputation();
-				player.clearDamge();
-				athome = true;
-				
-				this.printAll();
+				currentAdv = new Adventure(player, diff, 3);
+				acutallyStart(currentAdv, "starts");
 			}
 		}
 	}
 
+	public synchronized void resumeAdventure() {
+		//currentAdv.setHero(this.player);
+		acutallyStart(currentAdv, "continues");
+	}
+
+	private void acutallyStart(Adventure adv, String action)
+	{
+		int diff = adv.getDiff();
+		MessagePrinter.print("**** Adventure rank "+diff+" "+action+" **** ");
+		int result = adv.start();
+		if( result== 1) {
+			if (diff == reputation/10)player.incRank();
+			adv_suc++;
+		}else if(result == -1){
+			adv_fail++;
+		}else if (result == 0){
+			return;
+		}
+
+		this.gold += player.getGold();
+		MessagePrinter.print("Gold collected "+player.getGold());
+		player.setGold(0);
+
+		putGearFromBackpackToHome("Items collected", player.getItems(), this.consumables);
+		putGearFromBackpackToHome("Equipments collected", player.getEquipments(), this.equipments);
+		putGearFromBackpackToHome("Equipments equiped", player.getEquiped(), this.equipments);
+		Collections.sort(this.consumables);
+		Collections.sort(this.equipments);
+
+		player.stripGears();
+
+		setReputation();
+		player.clearDamge();
+		athome = true;
+
+		this.printAll();
+	}
 	private <T> void putGearFromBackpackToHome (String str, ArrayList<T> fromlist, ArrayList<T> tolist){
 		MessagePrinter.print(str+" :");
 		StringBuffer sb = new StringBuffer();
@@ -140,7 +161,11 @@ public class Home {
 		if(instance == null) instance = new Home();
 		return instance;
 	}
-	
+
+	public static void setHome(Home fromPrevSave){
+		instance = fromPrevSave;
+	}
+
 	public int getReputation() {
 		return reputation;
 	}
@@ -185,6 +210,10 @@ public class Home {
 			if(num<4) Home.getHome().train(num);
 			if(num >= 4) Home.getHome().goAdventure();
 		}
+	}
+
+	public boolean getAtHome(){
+		return athome;
 	}
 
 }

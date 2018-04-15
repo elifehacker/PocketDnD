@@ -37,7 +37,7 @@ public class Creature {
 	public Creature(int diff, int loc) {
 		randomnCh(loc);
 		setcheker();
-		levelup(diff*CharConst.difficultyLevelScaling);
+		levelup(diff*CharConst.difficultyLevelScaling, false);
 	}
 
 	private void set4stats() {
@@ -141,7 +141,7 @@ public class Creature {
 
 	}
 
-	public void levelup(int lv) {
+	public void levelup(int lv, boolean silence) {
 		while(this.level<lv) {
 			this.level++;
 			this.health+=health/10+growth*2;
@@ -151,7 +151,8 @@ public class Creature {
 			setcheker();
 
 		}
-		printAll();
+		if(!silence)
+			printAll();
 	}
 	
 	private void randomnCh() {
@@ -247,14 +248,14 @@ public class Creature {
 		weakness.clear();
 		types.add("Dragon");
 		growth*=1.5;
-		levelup(lv);
+		levelup(lv, false);
 	}
 	public void makeAMimic(int lv) {
 		types.clear();
 		weakness.clear();
 		types.add("Mimic");
 		growth*=1.2;
-		levelup(lv);
+		levelup(lv, false);
 	}
 	public void printAll() {
         StringBuilder sb = new StringBuilder();
@@ -320,15 +321,15 @@ public class Creature {
 
 	public static void main(String[] args){
 		Creature player = new Creature();
-		player.levelup(10);
+		player.levelup(10, false);
 		player.printAll();
 		
 		player = new Creature();
-		player.levelup(10);
+		player.levelup(10, false);
 		player.printAll();
 		
 		player = new Creature();
-		player.levelup(10);
+		player.levelup(10, false);
 		player.printAll();
 		
 	}

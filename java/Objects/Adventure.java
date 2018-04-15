@@ -1,4 +1,6 @@
 package Objects;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 import Creatures.Creature;
@@ -36,7 +38,13 @@ public class Adventure {
 	String X = new String("FSE");
 	String Y = new String("RCP");
 	String Z = new String("IM");
-	
+
+
+	Location currentLoc = null;
+	int currentSuccess = 0;
+	int currentDur = 0;
+	int currentEvt = 0;
+
 	public Adventure(Hero c, int diff, int dur) {
 		this.player = c;
 		this.difficulty = diff;
@@ -45,14 +53,29 @@ public class Adventure {
 		
 	}
 
-	public boolean start() {
-		//go to difficulty number of location, each location has 3 events
-		for(int i = 0; i < this.duration; i++) {
-			Location loc = EventConst.getARandomPlace();
-			int locid = loc.getId();
-			int succeeded = 0;
+	public int getDiff(){
+		return difficulty;
+	}
 
-			for(int k = 0; k< numofEventperLoc; k++) {
+	//remember to call this after loading from previous save
+	public void setHero(Hero h){
+		this.player = h;
+	}
+
+	public int start() {
+		//go to difficulty number of location, each location has 3 events
+		while(currentDur < this.duration){
+
+			if(currentEvt == 0){
+				//only generate a new location when starting anew.
+				//keep the currentLocation if this method was called from a previous save.
+				currentLoc = EventConst.getARandomPlace();
+				currentSuccess = 0;
+			}
+
+			int locid = currentLoc.getId();
+
+			while (currentEvt< numofEventperLoc) {
 
 				/*
 				 * 0 Home
@@ -73,46 +96,46 @@ public class Adventure {
 				Event ev = null;
 				
 				//1/3 *1/3 *1/3 of the time an accident could happen
-				if(k+1==numofEventperLoc && getRandomInteger(0, 10) < 3) sb.append("A");
+				if(currentEvt+1==numofEventperLoc && getRandomInteger(0, 10) < 3) sb.append("A");
 				//sb.append("A");
 				
 				Creature c = null;
 				
 				if(locid < 200) { //Village
 					sb.append(Z).append(Y);
-					ev = new VillageEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new VillageEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <300) {//Mountain
 					sb.append(X);
-					ev = new MountainEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new MountainEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <400) {//Dungeon
 					sb.append(Z).append(X);
-					ev = new DungeonEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new DungeonEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <500) {//Forest
 					sb.append(X);
-					ev = new ForestEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new ForestEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <600) {//River
 					sb.append(X);
-					ev = new WaterEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new WaterEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 
 				}else if(locid <700) {//Castle
 					sb.append(X).append(Y).append(Z);
-					ev = new CastleEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new CastleEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <800) {//Road
 					sb.append(X).append(Y);
-					ev = new RoadEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new RoadEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 					
 				}else if(locid <900) {//Dream
 					sb.append(X).append(Y).append(Z);
-					ev = new DreamEvent(sb.toString(), loc, c, difficulty, i*numofEventperLoc+k);		
+					ev = new DreamEvent(sb.toString(), currentLoc, c, difficulty, currentDur*numofEventperLoc+currentEvt);
 
 				}
 				
-				if(ev==null) ev = new Event(sb.toString(), loc, new Creature(), difficulty, i*numofEventperLoc+k);
+				if(ev==null) ev = new Event(sb.toString(), currentLoc, new Creature(), difficulty, currentDur*numofEventperLoc+currentEvt);
 
 				MessagePrinter.print("=== At "+ev.getLocation().getName()+" ===");
 				int result = ev.start(player);
@@ -125,18 +148,31 @@ public class Adventure {
 					}else{
 						player.faint();
 					}
-					return false;
+					return -1;
 				}else {
-					if(result==1) succeeded++;
-					if(k+1==numofEventperLoc) {
-						if(!getReward(k, succeeded)) return false;
+					if(result==1) currentSuccess++;
+					if(currentEvt+1==numofEventperLoc) {
+						if(!getReward(currentEvt, currentSuccess)) return -1;
 					}
 				}
+
+				currentEvt++;
+				WorldEngine.catchingUpTime(World.WorldEngine.event);
+				if(!WorldEngine.catchingUpTime()){
+					//time limit reached. force quit
+					Log.e("Debug","In adventure, time limit reached");
+
+					return 0;
+				}
+
 			}
+
+			currentEvt = 0;
+			currentDur++;
 		}
 		
 		MessagePrinter.print("**** Adventure completed! ****");
-		return true;
+		return 1;
 	}
 
 	private boolean getReward(int k, int suc){
@@ -195,7 +231,7 @@ public class Adventure {
 		}
 		
 		Hero player = new Hero();
-		player.levelup(7);
+		player.levelup(7, false);
 		Adventure a1 = new Adventure(player, 3, 3);
 		a1.start();
 	}

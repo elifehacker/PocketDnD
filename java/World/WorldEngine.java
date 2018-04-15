@@ -1,5 +1,9 @@
 package World;
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,33 +12,49 @@ import java.util.Date;
 import java.util.Random;
 
 import Creatures.Creature;
+import Objects.Adventure;
+import Objects.Home;
 
 
 public class WorldEngine {
 
-	public static int backpack_repacking = 600;
-	public static int pause = 10;
-	public static int training = 10;
+	public static int debug = 1800;
+	public static int backpack_repacking = debug;
+	public static int processlimit = debug;
+	public static int event = debug;
+	public static int pause = 0;
+	public static int training = debug;
 	public static Date previousTime = new Date();;
 	public static Date currentTime = new Date();;
-	private static long duration = getSeconds();
+	private static long duration = getTimePassedSinceLastTime();
 	private static long counter = 0;
 
-	public static long getSeconds() {
+	public static String saveHome = "PocketDnDSaveDataHome";
+	public static String saveAdventure = "PocketDnDSaveDataADV";
+
+	public static long getTimePassedSinceLastTime() {
 		ArrayList<String> fileContent = MyFileReader.readFileFromInternalStorage("datetime.txt");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
 
 		if(fileContent!= null && !fileContent.isEmpty()){
 			try {
 				previousTime = sdf.parse(fileContent.get(0));
+				Log.d("debug", "Previous time updated "+previousTime.getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+		}else{
+			MyFileReader.writeToFileInternalStorage("datetime.txt", sdf.format(currentTime));
 		}
-		MyFileReader.writeToFileInternalStorage("datetime.txt", sdf.format(currentTime));
 		Log.d("debug", "compare times: "+previousTime.getTime()+" "+currentTime.getTime());
 		return (currentTime.getTime()-previousTime.getTime())/1000;
 	}
+
+	public static void storeCurrentTime(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+		MyFileReader.writeToFileInternalStorage("datetime.txt", sdf.format(currentTime));
+	}
+
 
 	public static void catchingUpTime(long sec){
 		Log.d("debug", "increase time counter: "+counter+" by "+sec);
@@ -48,6 +68,38 @@ public class WorldEngine {
 
 		return false;
 	}
+
+	public static Object loadData(Activity act, String savefilename){
+		SharedPreferences mPrefs = act.getPreferences(0); // 0 == MODE_PRIVATE
+
+		Gson gson = new Gson();
+		String json = mPrefs.getString(savefilename, "");
+		if(savefilename.equals(saveHome)){
+			Home savedHome = gson.fromJson(json, Home.class);
+			Home.setHome(savedHome);
+			return savedHome;
+		}else if(savefilename.equals(saveAdventure)){
+			Adventure savedAdv = gson.fromJson(json, Adventure.class);
+			return savedAdv;
+		}
+		return null;
+	}
+
+	public static void saveData(Activity act, String savefilename){
+		SharedPreferences mPrefs = act.getPreferences(0); // 0 == MODE_PRIVATE
+
+		SharedPreferences.Editor prefsEditor = mPrefs.edit();
+		Gson gson = new Gson();
+
+		if(savefilename.equals(saveHome)) {
+			String json = gson.toJson(Home.getHome());
+			prefsEditor.putString(savefilename, json);
+			prefsEditor.commit();
+		}else if(savefilename.equals(saveAdventure)){
+			//
+		}
+	}
+
 
 	public static int getRandomInteger(int from, int var) {
         Random rnd = new Random();
