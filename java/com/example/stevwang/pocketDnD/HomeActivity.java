@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import Objects.Home;
-import World.MessagePrinter;
 import World.WorldEngine;
 
 /**
@@ -80,37 +79,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        ImageView character = (ImageView)findViewById(R.id.character);
-        if (character != null) {
-            character.setVisibility(View.VISIBLE);
-            AnimationDrawable frameAnimation = (AnimationDrawable)character.getDrawable();
-            frameAnimation.setVisible(true, true);
-            frameAnimation.start();
+
+        if(Home.getHome().getAtHome()){
+            int random = WorldEngine.getRandomInteger(1,3);
+            String id = "character";
+            if(random > 1)
+                id += random;
+            int character_id = getResources().getIdentifier(id, "id", getPackageName());
+
+            ImageView character = (ImageView)findViewById(character_id);
+            if (character != null) {
+                character.setVisibility(View.VISIBLE);
+                AnimationDrawable frameAnimation = (AnimationDrawable)character.getDrawable();
+                frameAnimation.setVisible(true, true);
+                frameAnimation.start();
+            }
         }
 
-        ImageView character2 = (ImageView)findViewById(R.id.character2);
-        if (character2 != null) {
-            character2.setVisibility(View.VISIBLE);
-            AnimationDrawable frameAnimation = (AnimationDrawable)character2.getDrawable();
-            frameAnimation.setVisible(true, true);
-            frameAnimation.start();
-        }
-
-        ImageView character3 = (ImageView)findViewById(R.id.character3);
-        if (character3 != null) {
-            character3.setVisibility(View.VISIBLE);
-            AnimationDrawable frameAnimation = (AnimationDrawable)character3.getDrawable();
-            frameAnimation.setVisible(true, true);
-            frameAnimation.start();
-        }
-
-        ImageView character4 = (ImageView)findViewById(R.id.character4);
-        if (character4 != null) {
-            character4.setVisibility(View.VISIBLE);
-            AnimationDrawable frameAnimation = (AnimationDrawable)character4.getDrawable();
-            frameAnimation.setVisible(true, true);
-            frameAnimation.start();
-        }
 
     }
 
