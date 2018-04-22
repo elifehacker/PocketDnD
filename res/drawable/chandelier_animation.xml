@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chandelier_animation"
+    android:oneshot="false">
+    <item android:drawable="@drawable/chandelier" android:duration="900" />
+    <item android:drawable="@drawable/chandelier2" android:duration="900" />
+</animation-list>

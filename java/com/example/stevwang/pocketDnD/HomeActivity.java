@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         if(Home.getHome().getAtHome()){
-            int random = WorldEngine.getRandomInteger(1,3);
+            int random = WorldEngine.getRandomInteger(1,4);
             String id = "character";
             if(random > 1)
                 id += random;
@@ -96,14 +96,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        ImageView bkg = (ImageView)findViewById(R.id.home_bkg);
-        if (bkg != null) {
-            bkg.setVisibility(View.VISIBLE);
-            AnimationDrawable frameAnimation = (AnimationDrawable)bkg.getDrawable();
+
+        setAnimation(R.id.chair_candle);
+        setAnimation(R.id.barrel_left);
+        setAnimation(R.id.top_wall);
+        setAnimation(R.id.chandelier);
+
+        //setAnimation(R.id.home_bkg);
+
+    }
+
+    private void setAnimation(int id){
+        ImageView animation = (ImageView)findViewById(id);
+
+        if (animation != null) {
+            animation.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)animation.getDrawable();
             frameAnimation.setVisible(true, true);
             frameAnimation.start();
         }
-
     }
 
 }

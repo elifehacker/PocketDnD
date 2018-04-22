@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chair_candle_animation"
+    android:oneshot="false">
+    <item android:drawable="@drawable/chair_candle" android:duration="1000" />
+    <item android:drawable="@drawable/chair_candle2" android:duration="1000" />
+</animation-list>

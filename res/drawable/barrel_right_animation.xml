@@ -1,0 +1,6 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/barrel_right_animation"
+    android:oneshot="false">
+    <item android:drawable="@drawable/barrel_right" android:duration="1000" />
+    <item android:drawable="@drawable/barrel_right2" android:duration="700" />
+</animation-list>

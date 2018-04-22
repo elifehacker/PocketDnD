@@ -24,7 +24,37 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitStart"
                 android:visibility="visible"
-                app:srcCompat="@drawable/interior_home" />
+                app:srcCompat="@drawable/interior_bkg" />
+
+            <ImageView
+                android:id="@+id/chair_candle"
+                android:layout_width="140dp"
+                android:layout_height="128dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:translationX="5dp"
+                android:translationY="361dp"
+                app:srcCompat="@drawable/chair_candle_animation" />
+
+            <ImageView
+                android:id="@+id/chandelier"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:translationX="789dp"
+                android:translationY="171dp"
+                app:srcCompat="@drawable/chandelier_animation" />
+
+            <ImageView
+                android:id="@+id/barrel_left"
+                android:layout_width="195dp"
+                android:layout_height="275dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="37dp"
+                android:layout_marginTop="26dp"
+                android:translationX="415dp"
+                android:translationY="236dp"
+                app:srcCompat="@drawable/barrel_left_animation" />
 
             <ImageView
                 android:id="@+id/character2"
@@ -62,6 +92,17 @@
                 android:translationY="350dp"
                 android:visibility="invisible"
                 app:srcCompat="@drawable/character" />
+
+            <ImageView
+                android:id="@+id/top_wall"
+                android:layout_width="159dp"
+                android:layout_height="162dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:translationX="45dp"
+                android:translationY="-10dp"
+                app:srcCompat="@drawable/top_wall_animation" />
+
         </FrameLayout>
     </HorizontalScrollView>
 
