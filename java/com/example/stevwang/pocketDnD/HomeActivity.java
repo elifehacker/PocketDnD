@@ -96,6 +96,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
+        ImageView bkg = (ImageView)findViewById(R.id.home_bkg);
+        if (bkg != null) {
+            bkg.setVisibility(View.VISIBLE);
+            AnimationDrawable frameAnimation = (AnimationDrawable)bkg.getDrawable();
+            frameAnimation.setVisible(true, true);
+            frameAnimation.start();
+        }
 
     }
 
