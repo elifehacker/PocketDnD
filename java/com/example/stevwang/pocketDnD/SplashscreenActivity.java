@@ -28,17 +28,6 @@ public class SplashscreenActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
         mContentView.setSystemUiVisibility(uioptions);
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                Intent intent = new Intent (SplashscreenActivity.this, GardenActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }, SplashTimeout);
-
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -81,10 +70,17 @@ public class SplashscreenActivity extends AppCompatActivity {
                 WorldEngine.saveData(SplashscreenActivity.this, WorldEngine.saveHome);
             }
         });
+        thread.start();
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-
-
+                Intent intent = new Intent (SplashscreenActivity.this, GardenActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, SplashTimeout);
 
     }
 }
